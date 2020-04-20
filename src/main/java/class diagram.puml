@@ -1,0 +1,85 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+interface Characterable{
+
+    ~void setHealthPoints(double healhPoints)
+    ~double getHealPoints()
+
+    ~void setAttackDamage(double attackDamage)
+    ~double getAttackDamage()
+
+    ~void setIsInfected(boolean isInfected)
+    ~boolean getIsInfected()
+
+    ~void setLocation(int x, int y)
+    ~int getXCoordinate()
+    ~int getYCoordinate()
+
+    ~public void moveX(int x)
+    ~public void moveY(int y)
+
+    ~void setViewRange(int viewRange)
+   ~int getViewRange()
+
+    ~void setIsAlive(boolean isAlive)
+   ~boolean getIsAlive()
+
+   ~boolean isInTheSameLocation(Character character2)
+}
+
+abstract class Character{
+    - double healthPoints, attackDamage
+    - boolean isInfected, isAlive
+    - int viewRange = 1
+    - int x
+    - int y
+
+    +void setHealthPoints(double healhPoints)
+        +double getHealPoints()
+
+        +void setAttackDamage(double attackDamage)
+        +double getAttackDamage()
+
+        +void setIsInfected(boolean isInfected)
+        +boolean getIsInfected()
+
+        +void setLocation(int x, int y)
+        +int getXCoordinate()
+        +int getYCoordinate()
+
+        +public void moveX(int x)
+        +public void moveY(int y)
+
+        +void setViewRange(int viewRange)
+        +int getViewRange()
+
+        +void setIsAlive(boolean isAlive)
+        +boolean getIsAlive()
+
+        +boolean isInTheSameLocation(Character character2)
+
+}
+
+class Human{
+ +Human()
+ +Human(double healthPoints, double attackDamage, int viewRange)
+}
+
+class Infected{
+ +Infected()
+ +Infected(double healthPoints, double attackDamage, int viewRange)
+ +public void fight(Character character2)
+}
+
+interface Fightable{
++void fight(Character character2)
+}
+
+
+Characterable <|-- Character
+Character <|-- Human
+Character <|-- Infected
+Fightable <|-- Infected
+
+@enduml

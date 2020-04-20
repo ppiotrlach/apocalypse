@@ -1,11 +1,11 @@
 public class Infected extends Character implements Fightable{
 
-    Infected()
+    public Infected()
     {
-        super(100, 30, 2, true);
+        super(30,100,  2, true);
     }
 
-    Infected(double healthPoints, double attackDamage, int viewRange)
+    public Infected(double healthPoints, double attackDamage, int viewRange)
     {
         super.setHealthPoints(healthPoints);
         super.setAttackDamage(attackDamage);
@@ -23,6 +23,7 @@ public class Infected extends Character implements Fightable{
                 if(character2.getHealPoints() <= 0) {
                     character2.setIsInfected(true);
                     character2 = new Infected();
+
                 }
             }
         }

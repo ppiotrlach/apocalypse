@@ -13,8 +13,8 @@ public interface Characterable {
     int getXCoordinate();
     int getYCoordinate();
 
-    public void moveX(int x);
-    public void moveY(int y);
+    void moveX(int x);
+    void moveY(int y);
 
     void setViewRange(int viewRange);
     int getViewRange();

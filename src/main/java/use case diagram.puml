@@ -1,0 +1,10 @@
+@startuml
+start
+:Load world;
+:Load characters;
+:Set location of characters;
+:Start simulation;
+:End simulation;
+:Print results;
+end
+@enduml

@@ -1,4 +1,4 @@
-public class Character implements Characterable {
+public abstract class Character implements Characterable {
 
     private double healthPoints, attackDamage;
     private boolean isInfected, isAlive;
@@ -26,19 +26,16 @@ public class Character implements Characterable {
 
     @Override
     public void setHealthPoints(double healthPoints) {
-        if(isAlive) this.healthPoints = healthPoints;
-        else healthPoints = 0;
+        this.healthPoints = healthPoints;
     }
     @Override
     public double getHealPoints() {
-        if(isAlive) return healthPoints;
-        return 0;
+        return healthPoints;
     }
 
     @Override
     public void setAttackDamage(double attackDamage) {
-        if(isAlive) this.attackDamage = attackDamage;
-        else attackDamage = 0;
+        this.attackDamage = attackDamage;
     }
 
     @Override
@@ -73,11 +70,11 @@ public class Character implements Characterable {
 
     @Override
     public void moveX(int x) {
-        if(isAlive) this.x+=x;
+         this.x+=x;
     }
     @Override
     public void moveY(int y) {
-        if(isAlive) this.y+=y;
+         this.y+=y;
     }
 
     @Override
