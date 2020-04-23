@@ -4,4 +4,5 @@ public class Human extends Character {
         super();
     }
 
+
 }

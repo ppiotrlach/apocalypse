@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Board {
+public class Board extends BoardStatics implements Boardable{
 
-
-    static final int HEIGHT = 10;
-    static final int WIDTH = 10;
 
     private Tile[][] grid = new Tile[HEIGHT][WIDTH];
     private ArrayList<Human> listOfHuman = new ArrayList<Human>(10);
@@ -22,6 +19,7 @@ public class Board {
     }
 
 //    public void initBoard(int finalNumberOfAllies, int finalNumberOfEnemies){
+    @Override
     public void initBoard(){
 
         for (int i = 0; i < HEIGHT; i++) {
@@ -40,37 +38,38 @@ public class Board {
 
     }
 
-    public void addCharacterable(Characterable characterable){
+//    public void addCharacterable(Characterable characterable){
+//
+//        Random rand = new Random();
+//
+//        if(characterable instanceof Human) {
+//            int temporary = numberOfAllies + 1;
+//            while(numberOfAllies < temporary){
+//                int x = rand.nextInt(HEIGHT);
+//                int y = rand.nextInt(WIDTH);
+//                if (grid[x][y].isFree()) {
+//                    grid[x][y].setCharacterable(characterable);
+//                    numberOfAllies++;
+//                }
+//            }
+//        }
+//        else if (characterable instanceof Infected){
+//            int temporary = numberOfEnemies + 1;
+//            while(numberOfEnemies<temporary){
+//                int x = rand.nextInt(HEIGHT);
+//                int y = rand.nextInt(WIDTH);
+//                if (grid[x][y].isFree()) {
+//                    grid[x][y].setCharacterable(characterable);
+//                    numberOfEnemies++;
+//                }
+//            }
+//        }
+//        else{
+//            throw new ClassNotPreparedException();
+//        }
+//    }
 
-        Random rand = new Random();
-
-        if(characterable instanceof Human) {
-            int temporary = numberOfAllies + 1;
-            while(numberOfAllies < temporary){
-                int x = rand.nextInt(HEIGHT);
-                int y = rand.nextInt(WIDTH);
-                if (grid[x][y].isFree()) {
-                    grid[x][y].setCharacterable(characterable);
-                    numberOfAllies++;
-                }
-            }
-        }
-        else if (characterable instanceof Infected){
-            int temporary = numberOfEnemies + 1;
-            while(numberOfEnemies<temporary){
-                int x = rand.nextInt(HEIGHT);
-                int y = rand.nextInt(WIDTH);
-                if (grid[x][y].isFree()) {
-                    grid[x][y].setCharacterable(characterable);
-                    numberOfEnemies++;
-                }
-            }
-        }
-        else{
-            throw new ClassNotPreparedException();
-        }
-    }
-
+    @Override
     public void addHuman(Human human){
 
         Random rand = new Random();
@@ -88,6 +87,7 @@ public class Board {
         }
     }
 
+    @Override
     public void addInfected(Infected infected){
 
         Random rand = new Random();
@@ -105,14 +105,17 @@ public class Board {
         }
     }
 
+    @Override
     public ArrayList<Human> getReferenceToListOfHuman() {
         return listOfHuman;
     }
 
+    @Override
     public ArrayList<Infected> getReferenceToListOfInfected() {
         return listOfInfected;
     }
 
+    @Override
     public void displayBoard(){
         for (int i = 0; i < HEIGHT; i++) {
             for (int j = 0; j < WIDTH; j++) {
@@ -120,10 +123,10 @@ public class Board {
                     System.out.print(" 0 ");
                 }
                 else if(grid[i][j].isHumanFree()){
-                    System.out.print(" H ");
+                    System.out.print(" I ");
                 }
                 else if(grid[i][j].isInfectedFree()){
-                    System.out.print(" I ");
+                    System.out.print(" H ");
                 }
                 else{
                     System.out.print(" * ");
@@ -131,5 +134,16 @@ public class Board {
             }
             System.out.print("\n");
         }
+    }
+
+    @Override
+    public Tile[][] getReferenceToGrid(){
+        return grid;
+    }
+
+    @Override
+    public boolean isSimulationOver(){
+        return true;
+        //not done
     }
 }

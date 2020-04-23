@@ -33,8 +33,8 @@ public class CharacterTest {
 //    @Test
 //    public void setLocation() {
 //        character.setLocation(2,3);
-//        assertEquals(2,character.getXCoordinate(),0);
-//        assertEquals(3,character.getYCoordinate(),0);
+//        assertEquals(2,character.getXCoordinate());
+//        assertEquals(3,character.getYCoordinate());
 //    }
 //
 //    @Test
@@ -45,20 +45,6 @@ public class CharacterTest {
 //    @Test
 //    public void getYCoordinate() {
 //        //same as in setLocation
-//    }
-//
-//    @Test
-//    public void moveX() {
-//        character.setLocation(0,0);
-//        character.moveX(1);
-//        assertEquals(1,character.getXCoordinate(),0);
-//    }
-//
-//    @Test
-//    public void moveY() {
-//        character.setLocation(0,0);
-//        character.moveY(1);
-//        assertEquals(1,character.getYCoordinate(),0);
 //    }
 //
 //    @Test

@@ -9,9 +9,22 @@ public class Tests {
         board.initBoard();
         for (int i = 0; i < 10; i++) {
             board.addHuman(new Human());
-            System.out.println(board.getReferenceToListOfHuman().get(i).displayCharacter());
+            board.addInfected(new Infected());
         }
+
         board.displayBoard();
+
+        System.out.println(" ");
+
+        for(Human human : board.getReferenceToListOfHuman()){
+            System.out.println(human.displayCharacter());
+            Move.moveRandomlyHuman(human,board);
+            System.out.println(human.displayCharacter());
+        }
+
+        board.displayBoard();
+
+
     }
 
 }

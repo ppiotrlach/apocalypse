@@ -1,3 +1,7 @@
 public interface Fightable {
-    void fight(Character character2);
+
+    void fight(Human human);
+
+    void findClosestEnemy();
+
 }

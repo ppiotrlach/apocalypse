@@ -1,13 +1,24 @@
-public class Infected extends Character{
+public class Infected extends Character implements Fightable{
 
-    private int viewrange;
+    private int viewRange;//not done
 
     public Infected(){
         super();
     }
 
+    @Override
+    public void fight(Human human) {
+        //not done
 
-//
+    }
+
+    @Override
+    public void findClosestEnemy() {
+        //not done
+
+    }
+
+
 //    public void fight(Character character2) {
 //        if(character2 instanceof Human)
 //        {

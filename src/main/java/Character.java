@@ -1,46 +1,43 @@
 public abstract class Character implements Characterable {
 
-    private int characterID;
+    private int characterID; //yes, it is useless XD
 
     private int healthPoints;
     private int attackDamage;
 
-    private Position characterPostion;
+    private Position characterPosition;
 
     public Character()
     {
-        this(100,20,-1,-1,-1);
+        this(100,20);
     }
 
-    public Character(int healthPoints, int attackDamage, int x, int y){
-        this(healthPoints,attackDamage,x,y,-1);
-    }
-
-    public Character(int healthPoints, int attackDamage, int x, int y, int characterID){
+    public Character(int healthPoints, int attackDamage){
         this.healthPoints = healthPoints;
         this.attackDamage = attackDamage;
-        this.characterPostion = new Position(x,y);
-        this.characterID = characterID;
+        this.characterPosition = new Position(-1,-1);
+        this.characterID = -1;
+
     }
 
     @Override
     public void setXCoordinate(int xCoordinate){
-        characterPostion.setxPosition(xCoordinate);
+        characterPosition.setxPosition(xCoordinate);
     }
 
     @Override
     public void setYCoordinate(int yCoordinate){
-        characterPostion.setyPosition(yCoordinate);
+        characterPosition.setyPosition(yCoordinate);
     }
 
     @Override
     public void setPosition(int xCoordinate, int yCoordinate) {
-        characterPostion.setPosition(xCoordinate, yCoordinate);
+        characterPosition.setPosition(xCoordinate, yCoordinate);
     }
 
     @Override
     public Position getPosition(){
-        return characterPostion;
+        return characterPosition;
     }
 
     @Override
@@ -75,9 +72,9 @@ public abstract class Character implements Characterable {
 
     @Override
     public String displayCharacter(){
-        return "Character ID- " + characterID
+        return "Character " + this.getClass() + " ID- " + characterID
                 + " ,health, attackdamage and Position " + healthPoints + " " + attackDamage
-                + " " + characterPostion.getxPosition() + "," + characterPostion.getyPosition();
+                + " " + characterPosition.getxPosition() + "," + characterPosition.getyPosition();
     }
 
 //    @Override

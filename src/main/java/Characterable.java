@@ -1,24 +1,24 @@
 public interface Characterable {
 
-    public void setHealthPoints(int healhPoints);
-    public int getHealPoints();
+    void setHealthPoints(int healhPoints);
+    int getHealPoints();
 
-    public void setAttackDamage(int attackDamage);
-    public int getAttackDamage();
+    void setAttackDamage(int attackDamage);
+    int getAttackDamage();
 
-    public void setXCoordinate(int xCoordinate);
+    void setXCoordinate(int xCoordinate);
 
-    public void setYCoordinate(int yCoordinate);
+    void setYCoordinate(int yCoordinate);
 
-    public void setPosition(int xCoordinate, int yCoordinate);
+    void setPosition(int xCoordinate, int yCoordinate);
 
-    public Position getPosition();
+    Position getPosition();
 
-    public int getCharacterID();
+    int getCharacterID();
 
-    public void setCharacterID(int characterID);
+    void setCharacterID(int characterID);
 
-    public String displayCharacter();
+    String displayCharacter();
 
 //    boolean isInTheSameLocation(Character character2);
 
