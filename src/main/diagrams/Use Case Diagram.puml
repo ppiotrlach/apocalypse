@@ -1,0 +1,20 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+
+left to right direction
+skinparam packageStyle rectangle
+actor User
+
+rectangle system{
+User -> (Start simulation)
+User -> (Set number of humans and infecteds)
+User -> (Set map size)
+
+}
+
+
+
+
+@enduml

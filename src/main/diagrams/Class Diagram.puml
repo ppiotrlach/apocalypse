@@ -1,0 +1,211 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+
+interface Boardable{
+
+    +void initBoard()
+
+    +void addHuman(Human human)
+
+    +void addInfected(Infected infected)
+
+    +ArrayList<Human> getReferenceToListOfHuman()
+
+    +ArrayList<Infected> getReferenceToListOfInfected()
+
+    +void displayBoard()
+
+    +Tile[][] getReferenceToGrid()
+
+    +boolean isSimulationOver()
+}
+
+abstract class BoardStatics{
+    +static final int HEIGHT = 10;
+    +static final int WIDTH = 10;
+}
+
+class Board{
+        - Tile[][] grid = new Tile[HEIGHT][WIDTH]
+        - int numberOfAllies
+        - int numberOfEnemies
+
+        - ArrayList<Human> listOfHuman = new ArrayList<Human>(10)
+        - ArrayList<Infected> listOfInfected = new ArrayList<Infected>(10)
+    --
+        ~Board()
+        +void initBoard()
+        +void addHuman(Human human)
+        +void addInfected(Infected infected)
+        +ArrayList<Human> getReferenceToListOfHuman()
+        +ArrayList<Infected> getReferenceToListOfInfected()
+        +void displayBoard()
+        +Tile[][] getReferenceToGrid()
+        +boolean isSimulationOver()
+}
+
+BoardStatics <|-- Board
+Boardable <|-- Board
+
+interface Characterable{
+    +void setHealthPoints(int healhPoints)
+    +int getHealPoints()
+
+    +void setAttackDamage(int attackDamage)
+    +int getAttackDamage()
+
+    +void setXCoordinate(int xCoordinate)
+
+    +void setYCoordinate(int yCoordinate)
+
+    +void setPosition(int xCoordinate, int yCoordinate)
+
+    +Position getPosition()
+
+    +int getCharacterID()
+
+    +void setCharacterID(int characterID)
+
+    +String displayCharacter()
+}
+
+abstract class Character{
+    -int characterID
+
+    -int healthPoints
+    -int attackDamage
+
+    -Position characterPosition
+
+    + Character()
+    + Character(int healthPoints, int attackDamage)
+    + void setXCoordinate(int xCoordinate)
+    + void setYCoordinate(int yCoordinate)
+    + void setPosition(int xCoordinate, int yCoordinate)
+    + Position getPosition()
+    + int getCharacterID()
+    + void setHealthPoints(int healthPoints)
+    + int getHealPoints()
+    + void setAttackDamage(int attackDamage)
+    + int getAttackDamage()
+    + void setCharacterID(int characterID)
+    + String displayCharacter()
+}
+
+Characterable <|-- Character
+
+interface Fightable{
+
+    +void fight(Human human)
+    +void findClosestEnemy()
+}
+
+class Human{
+    +Human()
+}
+
+Character <|-- Human
+
+class Infected{
+    - int viewRange
+    + Infected()
+
+     + void fight(Human human)
+     + void findClosestEnemy()
+}
+Character <|-- Infected
+Fightable <|-- Infected
+
+abstract class Move{
+
+    +static void moveRandomlyHuman(Human human, Board board)
+    +static void moveInfected(Infected infected, Board board)
+}
+
+BoardStatics <|--  Move
+
+interface Positionable{
+        +void setxPosition(int xPosition)
+
+        +void setyPosition(int yPosition)
+
+        +void setPosition(int xPosition, int yPostion)
+
+        +int getxPosition()
+
+        +int getyPosition()
+}
+
+class Position{
+    -int xPosition;
+     -int yPosition;
+
+      + Position(int xPosition, int yPosition)
+      + void setxPosition(int xPosition)
+      + void setyPosition(int yPosition)
+      + void setPosition(int xPosition, int yPostion)
+      + int getxPosition()
+      + int getyPosition()
+}
+
+Positionable <|-- Position
+
+enum RandomMoveGenerator{
+    +UP, DOWN, LEFT, RIGHT
+    +static RandomMoveGenerator randomMove()
+}
+
+interface Tilable {
+
+        +boolean isInteractionPossible();
+        +boolean isInfectedFree()
+        +boolean isHumanFree()
+        +boolean isFree()
+        +Human getHuman()
+        +Infected getInfected()
+        +void setHuman(Human human)
+        +void setInfected(Infected infected)
+}
+
+class Tile{
+    - Human human
+    - Infected infected
+
+     + boolean isInteractionPossible()
+     + boolean isInfectedFree()
+     + boolean isHumanFree()
+     + boolean isFree()
+     + Human getHuman()
+     + Infected getInfected()
+     + void setHuman(Human human)
+     + void setInfected(Infected infected)
+}
+
+Tilable <|-- Tile
+
+Board ..> Application
+Move --> Character
+
+
+Character ..> Application
+Character *--Position
+Board *-- Tile
+
+Tile *-- Infected
+Tile *-- Human
+
+Move *-- RandomMoveGenerator
+
+Board *-- Human
+Board *-- Infected
+
+
+class Application{
++ static void main(String[] args)
+}
+
+
+
+@enduml
