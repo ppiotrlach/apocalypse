@@ -1,3 +1,5 @@
+import character.Human;
+import character.Character;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

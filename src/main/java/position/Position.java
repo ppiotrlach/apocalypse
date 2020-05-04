@@ -1,4 +1,6 @@
-public class Position implements Positionable{
+package position;
+
+public class Position implements IPosition {
 
     private int xPosition;
     private int yPosition;

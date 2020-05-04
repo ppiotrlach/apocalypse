@@ -1,4 +1,8 @@
-public interface Characterable {
+package character;
+
+import position.Position;
+
+public interface ICharacter {
 
     void setHealthPoints(int healhPoints);
     int getHealPoints();
@@ -17,8 +21,6 @@ public interface Characterable {
     int getCharacterID();
 
     void setCharacterID(int characterID);
-
-    String displayCharacter();
 
 //    boolean isInTheSameLocation(Character character2);
 

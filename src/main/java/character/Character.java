@@ -1,4 +1,9 @@
-public abstract class Character implements Characterable {
+package character;
+
+import displayer.IDisplayer;
+import position.Position;
+
+public abstract class Character implements ICharacter, IDisplayer {
 
     private int characterID; //yes, it is useless XD
 
@@ -71,12 +76,12 @@ public abstract class Character implements Characterable {
     }
 
     @Override
-    public String displayCharacter(){
-        return "Character " + this.getClass() + " ID- " + characterID
+    public void display() {
+        System.out.println("character " + this.getClass() + " ID- " + characterID
                 + " ,health, attackdamage and Position " + healthPoints + " " + attackDamage
-                + " " + characterPosition.getxPosition() + "," + characterPosition.getyPosition();
-    }
+                + " " + characterPosition.getxPosition() + "," + characterPosition.getyPosition());
 
+    }
 //    @Override
 //    public boolean isInTheSameLocation(Character character2) {
 //        return x == character2.getXCoordinate() && y == character2.getYCoordinate();

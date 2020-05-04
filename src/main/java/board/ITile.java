@@ -1,4 +1,9 @@
-public interface Tilable {
+package board;
+
+import character.Human;
+import character.Infected;
+
+public interface ITile {
 
     boolean isInteractionPossible();
 

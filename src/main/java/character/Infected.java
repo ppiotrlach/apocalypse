@@ -1,4 +1,6 @@
-public class Infected extends Character implements Fightable{
+package character;
+
+public class Infected extends Character implements IFighter {
 
     private int viewRange;//not done
 
@@ -12,11 +14,7 @@ public class Infected extends Character implements Fightable{
 
     }
 
-    @Override
-    public void findClosestEnemy() {
-        //not done
 
-    }
 
 
 //    public void fight(Character character2) {

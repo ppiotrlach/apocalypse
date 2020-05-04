@@ -1,6 +1,9 @@
-import com.sun.jdi.ClassNotPreparedException;
+package board;
 
-public class Tile implements Tilable{
+import character.Human;
+import character.Infected;
+
+public class Tile implements ITile {
 
     private Human human;
     private Infected infected;
@@ -36,7 +39,6 @@ public class Tile implements Tilable{
 //            throw new ClassNotPreparedException();
 //        }
 //    }
-
 
     @Override
     public Human getHuman(){

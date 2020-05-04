@@ -1,4 +1,6 @@
-public interface Positionable {
+package position;
+
+public interface IPosition {
 
     void setxPosition(int xPosition);
 

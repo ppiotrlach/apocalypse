@@ -1,11 +1,17 @@
-public abstract class Move extends BoardStatics  {
+package board;
 
-    public static void moveRandomlyHuman(Human human, Board board){
+import character.Human;
+import character.Infected;
+import position.Position;
+
+public abstract class Move implements IBoardStatics {
+
+    public static void moveRandomlyHuman(Human human, SimpleBoard board){
         RandomMoveGenerator rand = RandomMoveGenerator.randomMove();
         Position positionOfHuman = human.getPosition();
         switch (rand){
             case UP:
-                if(positionOfHuman.getyPosition() + 1 != HEIGHT
+                if(positionOfHuman.getyPosition() + 1 != IBoardStatics.HEIGHT
                         && board.getReferenceToGrid()[positionOfHuman.getxPosition()][positionOfHuman.getyPosition() + 1].isHumanFree()){
                     board.getReferenceToGrid()[positionOfHuman.getxPosition()][positionOfHuman.getyPosition()].setHuman(null);
                     board.getReferenceToGrid()[positionOfHuman.getxPosition()][positionOfHuman.getyPosition()+1].setHuman(human);
@@ -29,7 +35,7 @@ public abstract class Move extends BoardStatics  {
                 }
                 break;
             case RIGHT:
-                if(positionOfHuman.getxPosition() + 1!= WIDTH
+                if(positionOfHuman.getxPosition() + 1!= IBoardStatics.WIDTH
                         && board.getReferenceToGrid()[positionOfHuman.getxPosition() + 1][positionOfHuman.getyPosition()].isHumanFree()){
                     board.getReferenceToGrid()[positionOfHuman.getxPosition()][positionOfHuman.getyPosition()].setHuman(null);
                     board.getReferenceToGrid()[positionOfHuman.getxPosition()+1][positionOfHuman.getyPosition()].setHuman(human);
@@ -39,12 +45,12 @@ public abstract class Move extends BoardStatics  {
         }
     }
 
-    public static void moveInfected(Infected infected, Board board){
+    public static void moveInfected(Infected infected, SimpleBoard board){
         RandomMoveGenerator rand = RandomMoveGenerator.randomMove();
         Position positionOfInfected = infected.getPosition();
         switch (rand){
             case UP:
-                if(positionOfInfected.getyPosition() + 1 != HEIGHT
+                if(positionOfInfected.getyPosition() + 1 != IBoardStatics.HEIGHT
                         && board.getReferenceToGrid()[positionOfInfected.getxPosition()][positionOfInfected.getyPosition() + 1].isInfectedFree()){
                     board.getReferenceToGrid()[positionOfInfected.getxPosition()][positionOfInfected.getyPosition()].setInfected(null);
                     board.getReferenceToGrid()[positionOfInfected.getxPosition()][positionOfInfected.getyPosition()+1].setInfected(infected);
@@ -68,7 +74,7 @@ public abstract class Move extends BoardStatics  {
                 }
                 break;
             case RIGHT:
-                if(positionOfInfected.getxPosition() + 1!= WIDTH
+                if(positionOfInfected.getxPosition() + 1!= IBoardStatics.WIDTH
                         && board.getReferenceToGrid()[positionOfInfected.getxPosition() + 1][positionOfInfected.getyPosition()].isInfectedFree()){
                     board.getReferenceToGrid()[positionOfInfected.getxPosition()][positionOfInfected.getyPosition()].setInfected(null);
                     board.getReferenceToGrid()[positionOfInfected.getxPosition()+1][positionOfInfected.getyPosition()+1].setInfected(infected);
