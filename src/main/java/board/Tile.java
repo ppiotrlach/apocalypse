@@ -3,30 +3,39 @@ package board;
 import character.Human;
 import character.Infected;
 
-public class Tile implements ITile {
+public class Tile {
 
     private Human human;
     private Infected infected;
 
-    @Override
     public boolean isInteractionPossible(){
         return (human != null && infected != null);
     }
 
-    @Override
     public boolean isInfectedFree(){
         return (infected == null);
     }
 
-    @Override
     public boolean isHumanFree(){
         return (human == null);
     }
 
-    @Override
     public boolean isFree(){
         return (human == null && infected == null);
     }
+
+
+    public void setHuman(Human human){
+        this.human = human;
+    }
+
+
+    public void setInfected(Infected infected){
+        this.infected = infected;
+    }
+
+}
+
 
 //    public void setCharacterable(Characterable characterable){
 //        if(characterable instanceof Infected){
@@ -39,25 +48,11 @@ public class Tile implements ITile {
 //            throw new ClassNotPreparedException();
 //        }
 //    }
-
-    @Override
-    public Human getHuman(){
-        return human;
-    }
-
-    @Override
-    public Infected getInfected(){
-        return infected;
-    }
-
-    @Override
-    public void setHuman(Human human){
-        this.human = human;
-    }
-
-    @Override
-    public void setInfected(Infected infected){
-        this.infected = infected;
-    }
-
-}
+//
+//    public Human getHuman(){
+//        return human;
+//    }
+//
+//    public Infected getInfected(){
+//        return infected;
+//    }

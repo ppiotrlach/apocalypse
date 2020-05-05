@@ -2,17 +2,15 @@ package board;
 
 import character.Human;
 import character.Infected;
-import displayer.IDisplayer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 // objects of this class are meant to be created by class SimpleBoardCreator
-public class SimpleBoard implements IBoard, IBoardStatics, IDisplayer {
+public class SimpleBoard implements IBoardStatics {
 
 
-    private Tile[][] grid;
+    private Grid grid;
     private List<Human> listOfHuman;
     private List<Infected> listOfInfected;
     private int numberOfAllies;
@@ -22,117 +20,107 @@ public class SimpleBoard implements IBoard, IBoardStatics, IDisplayer {
         this(0,0);
     }
 
-    public SimpleBoard(int numberOfAllies, int numberOfEnemies){
-        this.numberOfAllies = numberOfAllies;
-        this.numberOfEnemies = numberOfEnemies;
+    public SimpleBoard(int numberOfNewAllies, int numberOfNewEnemies){
+        this.numberOfAllies = numberOfNewAllies;
+        this.numberOfEnemies = numberOfNewEnemies;
         listOfHuman = new ArrayList<>(10);
         listOfInfected = new ArrayList<>(10);
-        grid = new Tile[IBoardStatics.HEIGHT][IBoardStatics.WIDTH];
-        this.initBoard(numberOfAllies,numberOfEnemies);
+        grid = new Grid(numberOfNewAllies, numberOfNewEnemies, listOfHuman, listOfInfected);
     }
-
-    private void initBoard(int numberOfAllies, int numberOfEnemies){
-
-        for (int i = 0; i < IBoardStatics.HEIGHT; i++) {
-            for (int j = 0; j < IBoardStatics.WIDTH; j++) {
-                grid[i][j] = new Tile();
-            }
-        }
-
-        while(this.numberOfAllies<numberOfAllies){
-                this.addHuman(new Human());
-            }
-
-        while(this.numberOfEnemies<numberOfEnemies) {
-            this.addInfected(new Infected());
-        }
-
-    }
-
 
     //this method adds a Human to a random Tile on board
-    @Override
     public void addHuman(Human human){
 
-        Random rand = new Random();
-        int temporary = numberOfAllies + 1;
-        while(numberOfAllies < temporary){
-            int x = rand.nextInt(IBoardStatics.HEIGHT);
-            int y = rand.nextInt(IBoardStatics.WIDTH);
-            if(grid[x][y].isHumanFree()) {
-                grid[x][y].setHuman(human);
-                human.setPosition(x, y);
-                listOfHuman.add(human);
-                human.setCharacterID(numberOfAllies);
-                numberOfAllies++;
-            }
-        }
+        grid.addHuman(human, numberOfAllies,listOfHuman);
+        numberOfAllies++;
     }
-
 
     //this method adds an Infected to a random tile on board
-    @Override
     public void addInfected(Infected infected){
 
-        Random rand = new Random();
-        int temporary = numberOfEnemies + 1;
-        while(numberOfEnemies<temporary){
-            int x = rand.nextInt(IBoardStatics.HEIGHT);
-            int y = rand.nextInt(IBoardStatics.WIDTH);
-            if(grid[x][y].isInfectedFree()) {
-                grid[x][y].setInfected(infected);
-                infected.setPosition(x, y);
-                listOfInfected.add(infected);
-                infected.setCharacterID(numberOfEnemies);
-                numberOfEnemies++;
-            }
-        }
+        grid.addInfected(infected, numberOfEnemies,listOfInfected);
+        numberOfEnemies++;
+
     }
 
-    public List<Human> getReferenceToListOfHuman() {
-        return listOfHuman;
+    public void setTileToHuman(int x, int y, Human human){
+        grid.setTileToHuman(x,y,human);
+    }
+    public void setTileToInfected(int x, int y, Infected infected){
+        grid.setTileToInfected(x,y,infected);
     }
 
-    public List<Infected> getReferenceToListOfInfected() {
-        return listOfInfected;
+    public boolean isTileFree(int x, int y){
+        return grid.isTileFree(x,y);
     }
 
-    @Override
-    public void display(){
-        for (int i = 0; i < IBoardStatics.HEIGHT; i++) {
-            for (int j = 0; j < IBoardStatics.WIDTH; j++) {
-                if(grid[i][j].isFree()){
-                    System.out.print(" 0 ");
-                }
-                else if(grid[i][j].isHumanFree()){
-                    System.out.print(" I ");
-                }
-                else if(grid[i][j].isInfectedFree()){
-                    System.out.print(" H ");
-                }
-                else{
-                    System.out.print(" * ");
-                }
-            }
-            System.out.print("\n");
-        }
+    public boolean isTileHumanFree(int x, int y){
+        return grid.isTileHumanFree(x,y);
     }
 
-    public Tile[][] getReferenceToGrid(){
-        return grid;
+    public boolean isTileInfectedFree(int x, int y){
+        return grid.isTileInfectedFree(x,y);
     }
-//
-//    public void findClosestEnemy() {
-//        //not done
-//
-//    }
 
-    @Override
+
+    public void findClosestEnemy() {
+        //not done
+
+    }
+
     public boolean isSimulationOver(){
         return true;
         //not done
     }
+
+    public List<Human> getListOfHuman() {
+        return listOfHuman;
+    }
+
+    public List<Infected> getListOfInfected() {
+        return listOfInfected;
+    }
 }
+
+
+
+
+
+//        grid = new Tile[IBoardStatics.HEIGHT][IBoardStatics.WIDTH];
+//        grid.initGrid(numberOfAllies,numberOfEnemies);
+
+
+//    private void initGrid(int numberOfAllies, int numberOfEnemies){
+//
+//        for (int i = 0; i < IBoardStatics.HEIGHT; i++) {
+//            for (int j = 0; j < IBoardStatics.WIDTH; j++) {
+//                grid[i][j] = new Tile();
+//            }
+//        }
+//
+//        while(numberOfAllies<numberOfAllies){
+//            this.addHuman(new Human());
+//        }
+//
+//        while(this.numberOfEnemies<numberOfEnemies) {
+//            this.addInfected(new Infected());
+//        }
+//
+//    }
+
+//        Random rand = new Random();
+//        int temporary = numberOfAllies + 1;
+//        while(numberOfAllies < temporary){
+//            int x = rand.nextInt(IBoardStatics.HEIGHT);
+//            int y = rand.nextInt(IBoardStatics.WIDTH);
+//            if(grid[x][y].isHumanFree()) {
+//                grid[x][y].setHuman(human);
+//                human.setPosition(x, y);
+
+//
+//    public Tile[][] getReferenceToGrid(){
+//        return grid;
+//    }
 
 
 //    public void addCharacterable(Characterable characterable){
@@ -164,4 +152,4 @@ public class SimpleBoard implements IBoard, IBoardStatics, IDisplayer {
 //        else{
 //            throw new ClassNotPreparedException();
 //        }
-//    }
+//

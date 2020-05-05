@@ -1,6 +1,6 @@
 package character;
 
-public class Infected extends Character implements IFighter {
+public class Infected extends Character{
 
     private int viewRange;//not done
 
@@ -8,13 +8,11 @@ public class Infected extends Character implements IFighter {
         super();
     }
 
-    @Override
     public void fight(Human human) {
         //not done
 
     }
-
-
+}
 
 
 //    public void fight(Character character2) {
@@ -32,4 +30,3 @@ public class Infected extends Character implements IFighter {
 //            }
 //        }
 //    }
-}

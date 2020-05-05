@@ -2,9 +2,8 @@ package application;
 
 import board.SimpleBoard;
 import boardCreator.SimpleBoardCreator;
-import board.Move;
 import character.Human;
-import character.Infected;
+import displayer.BoardDisplayer;
 
 public class Application{
 
@@ -15,29 +14,17 @@ public class Application{
     }
 
     private void runApplication(){
-        board.initBoard();
-        for (int i = 0; i < 10; i++) {
-            board.addHuman(new Human());
-            board.addInfected(new Infected());
+        BoardDisplayer.displayBoard(board);
+        System.out.println(" ");//empty line
+        board.addHuman(new Human());
+        BoardDisplayer.displayBoard(board);
+        for (Human human:board.getListOfHuman()) {
+            System.out.println("Piotrek");
         }
-
-        board.displayBoard();
-
-        System.out.println(" ");
-
-
-        for(Human human : board.getReferenceToListOfHuman()){
-            System.out.println(human.displayCharacter());
-            Move.moveRandomlyHuman(human,board);
-            System.out.println(human.displayCharacter());
-        }
-
-        board.displayBoard();
-
     }
 
     public static void main(String[] args){
-        SimpleBoardCreator boardCreator = new SimpleBoardCreator();
+        SimpleBoardCreator boardCreator = new SimpleBoardCreator(10,10);
         Application app = new Application(boardCreator);
         app.runApplication();
     }

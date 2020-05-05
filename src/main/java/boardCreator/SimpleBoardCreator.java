@@ -3,7 +3,7 @@ package boardCreator;
 import board.IBoardStatics;
 import board.SimpleBoard;
 
-public class SimpleBoardCreator implements IBoardCreator, IBoardStatics {
+public class SimpleBoardCreator implements IBoardStatics {
 
     private int numberOfAllies;
     private int numberOfEnemies;

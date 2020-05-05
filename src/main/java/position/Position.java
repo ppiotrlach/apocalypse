@@ -1,6 +1,6 @@
 package position;
 
-public class Position implements IPosition {
+public class Position{
 
     private int xPosition;
     private int yPosition;
@@ -10,31 +10,31 @@ public class Position implements IPosition {
         this.yPosition = yPosition;
     }
 
-    @Override
-    public void setxPosition(int xPosition){
-        this.xPosition = xPosition;
-    }
-
-    @Override
-    public void setyPosition(int yPosition){
-        this.yPosition = yPosition;
-    }
-
-    @Override
     public void setPosition(int xPosition, int yPostion){
         this.xPosition = xPosition;
         this.yPosition = yPostion;
     }
 
-    @Override
+
     public int getxPosition(){
        return xPosition;
     }
 
-    @Override
+
     public int getyPosition(){
         return yPosition;
     }
 
 
 }
+
+
+//
+//    public void setxPosition(int xPosition){
+//        this.xPosition = xPosition;
+//    }
+//
+//
+//    public void setyPosition(int yPosition){
+//        this.yPosition = yPosition;
+//    }

@@ -1,9 +1,8 @@
 package character;
 
-import displayer.IDisplayer;
 import position.Position;
 
-public abstract class Character implements ICharacter, IDisplayer {
+public abstract class Character {
 
     private int characterID; //yes, it is useless XD
 
@@ -25,65 +24,51 @@ public abstract class Character implements ICharacter, IDisplayer {
 
     }
 
-    @Override
-    public void setXCoordinate(int xCoordinate){
-        characterPosition.setxPosition(xCoordinate);
-    }
-
-    @Override
-    public void setYCoordinate(int yCoordinate){
-        characterPosition.setyPosition(yCoordinate);
-    }
-
-    @Override
     public void setPosition(int xCoordinate, int yCoordinate) {
         characterPosition.setPosition(xCoordinate, yCoordinate);
     }
 
-    @Override
     public Position getPosition(){
         return characterPosition;
     }
 
-    @Override
-    public int getCharacterID(){
-        return characterID;
-    }
 
-    @Override
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
-    @Override
-    public int getHealPoints() {
-        return healthPoints;
-    }
-
-    @Override
-    public void setAttackDamage(int attackDamage) {
-        this.attackDamage = attackDamage;
-    }
-
-    @Override
-    public int getAttackDamage() {
-        return attackDamage;
-    }
-
-    @Override
     public void setCharacterID(int characterID){
         this.characterID = characterID;
     }
 
     @Override
-    public void display() {
-        System.out.println("character " + this.getClass() + " ID- " + characterID
+    public String toString() {
+        return "character " + this.getClass() + " ID - " + characterID
                 + " ,health, attackdamage and Position " + healthPoints + " " + attackDamage
-                + " " + characterPosition.getxPosition() + "," + characterPosition.getyPosition());
+                + " " + characterPosition.getxPosition() + "," + characterPosition.getyPosition();
 
     }
+}
+
+
+//
+//    public void setHealthPoints(int healthPoints) {
+//        this.healthPoints = healthPoints;
+//    }
+//
+//
+//    public int getHealthPoints() {
+//        return healthPoints;
+//    }
+//
+//    public void setAttackDamage(int attackDamage) {
+//        this.attackDamage = attackDamage;
+//    }
+//
+//
+//    public int getAttackDamage() {
+//        return attackDamage;
+//    }
+
+
+
 //    @Override
 //    public boolean isInTheSameLocation(Character character2) {
 //        return x == character2.getXCoordinate() && y == character2.getYCoordinate();
 //    }
-}
