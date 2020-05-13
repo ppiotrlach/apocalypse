@@ -4,18 +4,19 @@ import character.Human;
 import character.Infected;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Grid {
 
     private Tile[][] grid;
 
-    public Grid(int newAllies, int newEnemies, List<Human> listOfHuman, List<Infected> listOfInfected){
+    public Grid(int newAllies, int newEnemies, Map<Integer, Human> mapOfHuman, Map<Integer, Infected> mapOfInfected){
         grid = new Tile[IBoardStatics.HEIGHT][IBoardStatics.WIDTH];
-        this.initGrid(newAllies, newEnemies, listOfHuman, listOfInfected);
+        this.initGrid(newAllies, newEnemies, mapOfHuman, mapOfInfected);
     }
 
-    private void initGrid(int newAllies, int newEnemies, List<Human> listOfHuman, List<Infected> listOfInfected){
+    private void initGrid(int newAllies, int newEnemies, Map<Integer, Human> mapOfHuman, Map<Integer,Infected> mapOfInfected){
 
         for (int i = 0; i < IBoardStatics.HEIGHT; i++) {
             for (int j = 0; j < IBoardStatics.WIDTH; j++) {
@@ -24,15 +25,15 @@ public class Grid {
         }
 
         for (int allyCounter = 0; allyCounter < newAllies; allyCounter++) {
-            this.addHuman(new Human(), listOfHuman, allyCounter);
+            this.addHuman(new Human(), mapOfHuman, allyCounter);
         }
 
         for (int enemyCounter = 0; enemyCounter < newEnemies; enemyCounter++) {
-            this.addInfected(new Infected(),listOfInfected,enemyCounter);
+            this.addInfected(new Infected(), mapOfInfected ,enemyCounter);
         }
     }
 
-    public void addHuman(Human human, List<Human> listOfHuman, int allyCounter){
+    public void addHuman(Human human, Map<Integer, Human> mapOfHuman, int allyCounter){
 
         Random rand = new Random();
         int temporary = 0;
@@ -43,13 +44,13 @@ public class Grid {
                 grid[x][y].setHuman(human);
                 human.setPosition(x, y);
                 human.setCharacterID(allyCounter);
-                listOfHuman.add(allyCounter,human);
+                mapOfHuman.put(allyCounter,human);
                 temporary++;
             }
         }
     }
 
-    public void addInfected(Infected infected, List<Infected> listOfInfected, int enemyCounter){
+    public void addInfected(Infected infected, Map<Integer, Infected> mapOfInfected, int enemyCounter){
 
         Random rand = new Random();
         int temporary = 0;
@@ -60,7 +61,7 @@ public class Grid {
                 grid[x][y].setInfected(infected);
                 infected.setPosition(x, y);
                 infected.setCharacterID(enemyCounter);
-                listOfInfected.add(enemyCounter,infected);
+                mapOfInfected.put(enemyCounter,infected);
                 temporary++;
             }
         }

@@ -7,6 +7,8 @@ import character.Human;
 import character.Infected;
 import displayer.BoardDisplayer;
 
+import java.util.Map;
+
 public class Application{
 
     private SimpleBoard board;
@@ -18,17 +20,15 @@ public class Application{
     private void runApplication(){
         BoardDisplayer.displayBoard(board);
         while(board.isNotSimulationOver()){
-            for (Human human : board.getListOfHuman()) {
-
-                System.out.println(board.getListOfHuman().indexOf(human));
-                System.out.println(human.toString());
+            for (Map.Entry<Integer, Human> entry : board.getMapOfHuman().entrySet()) {
+                Integer key = entry.getKey();
+                Human human = entry.getValue();
                 Move.moveRandomlyHuman(human,board);
 
             }
-            for (Infected infected : board.getListOfInfected()) {
-
-                System.out.println(board.getListOfInfected().indexOf(infected));
-                System.out.println(infected.toString());
+            for (Map.Entry<Integer, Infected> entry : board.getMapOfInfected().entrySet()) {
+                Integer key = entry.getKey();
+                Infected infected = entry.getValue();
                 Move.moveInfected(infected,board);
             }
             board.fight();

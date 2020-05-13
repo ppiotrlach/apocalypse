@@ -2,9 +2,6 @@ package board;
 
 import character.Human;
 import character.Infected;
-import sun.java2d.pipe.SpanShapeRenderer;
-
-import java.util.List;
 
 public class Tile {
 
@@ -41,12 +38,12 @@ public class Tile {
         human.takeDamage(infected.getAttackDamage());
         infected.takeDamage(human.getAttackDamage());
         if(human.getHealthPoints()<=0){
-            board.getListOfHuman().remove(human.getCharacterID());
+            board.getMapOfHuman().remove(human.getCharacterID(), human);
             this.setHuman(null);
             board.decreaseNumberOfAllies();
         }
         if(infected.getHealthPoints()<=0){
-            board.getListOfInfected().remove(infected.getCharacterID());
+            board.getMapOfInfected().remove(infected.getCharacterID(), infected);
             this.setInfected(null);
             board.decreaseNumberOfEnemies();
         }
