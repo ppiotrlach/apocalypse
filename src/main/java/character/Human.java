@@ -6,5 +6,8 @@ public class Human extends Character {
         super();
     }
 
-
+    @Override
+    public String toString(){
+        return super.toString();
+    }
 }

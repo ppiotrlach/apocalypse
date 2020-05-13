@@ -18,9 +18,13 @@ public class SimpleBoardCreator implements IBoardStatics {
     }
 
     public SimpleBoard createBoard(){
-
-        return new SimpleBoard(numberOfAllies,numberOfEnemies);
-
+        if(numberOfAllies + numberOfEnemies <= IBoardStatics.HEIGHT * IBoardStatics.WIDTH){
+            return new SimpleBoard(numberOfAllies,numberOfEnemies);
+        }
+        else{
+            System.out.println("You want to add too many characters to the board");
+            return null;
+        }
     }
 
 }

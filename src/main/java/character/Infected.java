@@ -2,15 +2,16 @@ package character;
 
 public class Infected extends Character{
 
-    private int viewRange;//not done
+    //private int viewRange;//not done
 
     public Infected(){
         super();
     }
 
-    public void fight(Human human) {
-        //not done
 
+    @Override
+    public String toString(){
+        return super.toString();
     }
 }
 

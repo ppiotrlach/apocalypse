@@ -3,8 +3,8 @@ package board;
 public interface IBoardStatics {
 
 
-    int HEIGHT = 10;
-    int WIDTH = 10;
+    int HEIGHT = 2;
+    int WIDTH = 2;
 
 
 }

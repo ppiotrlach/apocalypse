@@ -5,6 +5,7 @@ import character.Infected;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 // objects of this class are meant to be created by class SimpleBoardCreator
 public class SimpleBoard implements IBoardStatics {
@@ -15,6 +16,7 @@ public class SimpleBoard implements IBoardStatics {
     private List<Infected> listOfInfected;
     private int numberOfAllies;
     private int numberOfEnemies;
+
 
     public SimpleBoard(){
         this(0,0);
@@ -30,22 +32,30 @@ public class SimpleBoard implements IBoardStatics {
 
     //this method adds a Human to a random Tile on board
     public void addHuman(Human human){
-
-        grid.addHuman(human, numberOfAllies,listOfHuman);
-        numberOfAllies++;
+        if(numberOfAllies + numberOfEnemies <= IBoardStatics.HEIGHT * IBoardStatics.WIDTH) {
+            grid.addHuman(human, listOfHuman, numberOfAllies);
+            numberOfAllies++;
+        }
+        else{
+            System.out.println("You want to add too many characters to the board");
+        }
     }
 
     //this method adds an Infected to a random tile on board
     public void addInfected(Infected infected){
-
-        grid.addInfected(infected, numberOfEnemies,listOfInfected);
-        numberOfEnemies++;
-
+        if(numberOfAllies + numberOfEnemies <= IBoardStatics.HEIGHT * IBoardStatics.WIDTH) {
+            grid.addInfected(infected,listOfInfected, numberOfEnemies);
+            numberOfEnemies++;
+        }
+        else{
+            System.out.println("You want to add too many characters to the board");
+        }
     }
 
     public void setTileToHuman(int x, int y, Human human){
         grid.setTileToHuman(x,y,human);
     }
+
     public void setTileToInfected(int x, int y, Infected infected){
         grid.setTileToInfected(x,y,infected);
     }
@@ -63,14 +73,17 @@ public class SimpleBoard implements IBoardStatics {
     }
 
 
-    public void findClosestEnemy() {
-        //not done
+//    public void findClosestEnemy() {
+//        //not done
+//
+//    }
 
-    }
-
-    public boolean isSimulationOver(){
-        return true;
-        //not done
+    public boolean isNotSimulationOver(){
+        if(listOfHuman.isEmpty() || listOfInfected.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public List<Human> getListOfHuman() {
@@ -79,6 +92,17 @@ public class SimpleBoard implements IBoardStatics {
 
     public List<Infected> getListOfInfected() {
         return listOfInfected;
+    }
+
+    public void fight(){
+        grid.fight(this);
+    }
+
+    public void decreaseNumberOfAllies(){
+        numberOfAllies--;
+    }
+    public void decreaseNumberOfEnemies(){
+        numberOfEnemies--;
     }
 }
 

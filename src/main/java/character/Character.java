@@ -13,7 +13,7 @@ public abstract class Character {
 
     public Character()
     {
-        this(100,20);
+        this(15,20);
     }
 
     public Character(int healthPoints, int attackDamage){
@@ -33,17 +33,33 @@ public abstract class Character {
     }
 
 
+    public int getAttackDamage() {
+        return attackDamage;
+    }
+
     public void setCharacterID(int characterID){
         this.characterID = characterID;
     }
 
+    public int getCharacterID(){
+        return characterID;
+    }
+
+    public void takeDamage(int opponentsAttackDamage){
+        healthPoints -= opponentsAttackDamage;
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
     @Override
     public String toString() {
-        return "character " + this.getClass() + " ID - " + characterID
-                + " ,health, attackdamage and Position " + healthPoints + " " + attackDamage
-                + " " + characterPosition.getxPosition() + "," + characterPosition.getyPosition();
+            return "character " + this.getClass() + "ID "+ characterID + " "
+                    + ", health, attack damage and Position " + healthPoints + " " + attackDamage
+                    + " (" + characterPosition.getxPosition() + "," + characterPosition.getyPosition() + ")";
+        }
 
-    }
 }
 
 
@@ -52,22 +68,10 @@ public abstract class Character {
 //        this.healthPoints = healthPoints;
 //    }
 //
-//
-//    public int getHealthPoints() {
-//        return healthPoints;
-//    }
-//
 //    public void setAttackDamage(int attackDamage) {
 //        this.attackDamage = attackDamage;
 //    }
 //
-//
-//    public int getAttackDamage() {
-//        return attackDamage;
-//    }
-
-
-
 //    @Override
 //    public boolean isInTheSameLocation(Character character2) {
 //        return x == character2.getXCoordinate() && y == character2.getYCoordinate();

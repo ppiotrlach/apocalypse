@@ -24,15 +24,15 @@ public class Grid {
         }
 
         for (int allyCounter = 0; allyCounter < newAllies; allyCounter++) {
-            this.addHuman(new Human(),allyCounter, listOfHuman);
+            this.addHuman(new Human(), listOfHuman, allyCounter);
         }
 
         for (int enemyCounter = 0; enemyCounter < newEnemies; enemyCounter++) {
-            this.addInfected(new Infected(),enemyCounter,listOfInfected);
+            this.addInfected(new Infected(),listOfInfected,enemyCounter);
         }
     }
 
-    public void addHuman(Human human, int ID, List<Human> listOfHuman){
+    public void addHuman(Human human, List<Human> listOfHuman, int allyCounter){
 
         Random rand = new Random();
         int temporary = 0;
@@ -42,14 +42,14 @@ public class Grid {
             if(grid[x][y].isFree()) {
                 grid[x][y].setHuman(human);
                 human.setPosition(x, y);
-                human.setCharacterID(ID);
-                listOfHuman.add(human);
+                human.setCharacterID(allyCounter);
+                listOfHuman.add(allyCounter,human);
                 temporary++;
             }
         }
     }
 
-    public void addInfected(Infected infected, int ID, List<Infected> listOfInfected){
+    public void addInfected(Infected infected, List<Infected> listOfInfected, int enemyCounter){
 
         Random rand = new Random();
         int temporary = 0;
@@ -59,8 +59,8 @@ public class Grid {
             if (grid[x][y].isFree()) {
                 grid[x][y].setInfected(infected);
                 infected.setPosition(x, y);
-                infected.setCharacterID(ID);
-                listOfInfected.add(infected);
+                infected.setCharacterID(enemyCounter);
+                listOfInfected.add(enemyCounter,infected);
                 temporary++;
             }
         }
@@ -88,6 +88,16 @@ public class Grid {
 
     public boolean isTileInfectedFree(int x, int y){
         return grid[x][y].isInfectedFree();
+    }
+
+    public void fight(SimpleBoard board){
+        for (int i = 0; i < IBoardStatics.HEIGHT; i++) {
+            for (int j = 0; j < IBoardStatics.WIDTH; j++) {
+                if(grid[i][j].isInteractionPossible()){
+                    grid[i][j].interact(board);
+                }
+            }
+        }
     }
 
 }

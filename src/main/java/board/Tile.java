@@ -2,6 +2,9 @@ package board;
 
 import character.Human;
 import character.Infected;
+import sun.java2d.pipe.SpanShapeRenderer;
+
+import java.util.List;
 
 public class Tile {
 
@@ -32,6 +35,21 @@ public class Tile {
 
     public void setInfected(Infected infected){
         this.infected = infected;
+    }
+
+    public void interact(SimpleBoard board){
+        human.takeDamage(infected.getAttackDamage());
+        infected.takeDamage(human.getAttackDamage());
+        if(human.getHealthPoints()<=0){
+            board.getListOfHuman().remove(human.getCharacterID());
+            this.setHuman(null);
+            board.decreaseNumberOfAllies();
+        }
+        if(infected.getHealthPoints()<=0){
+            board.getListOfInfected().remove(infected.getCharacterID());
+            this.setInfected(null);
+            board.decreaseNumberOfEnemies();
+        }
     }
 
 }
