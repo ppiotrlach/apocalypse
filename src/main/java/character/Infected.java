@@ -5,13 +5,16 @@ public class Infected extends Character{
     //private int viewRange;//not done
 
     public Infected(){
-        super();
+        super(40, 15);
     }
 
     public Infected(int healthPoints, int attackDamage){
         super(healthPoints, attackDamage);
     }
 
+    public void increaseAttack(){
+        this.attackDamage += 1;
+    }
 
     @Override
     public String toString(){

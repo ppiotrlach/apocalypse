@@ -77,11 +77,19 @@ public class SimpleBoard implements IBoardStatics {
 //
 //    }
 
-    public boolean isNotSimulationOver(){
-        if(mapOfHuman.isEmpty() || mapOfInfected.isEmpty()){
-            return false;
-        }else{
+    public boolean isSimulationOver(){
+        if(mapOfHuman.isEmpty() && mapOfInfected.isEmpty()){
+            System.out.println("Draw");
             return true;
+        }else if(mapOfHuman.isEmpty()) {
+            System.out.println("Infecteds win");
+            return true;
+        }else if(mapOfInfected.isEmpty()) {
+            System.out.println("Humans win");
+            return true;
+        }
+        else{
+            return false;
         }
     }
 

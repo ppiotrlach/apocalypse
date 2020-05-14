@@ -22,6 +22,4 @@ public class PositionTest {
     public void shouldSayThat15IsYPosition(){
         assertEquals(15, position.getyPosition());
     }
-
-
 }

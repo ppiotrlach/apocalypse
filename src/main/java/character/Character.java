@@ -4,17 +4,14 @@ import position.Position;
 
 public abstract class Character {
 
-    private int characterID; //yes, it is useless XD
+    protected int characterID; //yes, it is useless XD
 
-    private int healthPoints;
-    private int attackDamage;
+    protected int healthPoints;
+    protected int attackDamage;
 
-    private Position characterPosition;
+    protected Position characterPosition;
 
-    public Character()
-    {
-        this(15,20);
-    }
+
 
     public Character(int healthPoints, int attackDamage){
         this.healthPoints = healthPoints;
@@ -55,7 +52,7 @@ public abstract class Character {
 
     @Override
     public String toString() {
-            return "character " + this.getClass() + "ID "+ characterID + " "
+            return "character " + this.getClass() + " ID "+ characterID + " "
                     + ", health, attack damage and Position " + healthPoints + " " + attackDamage
                     + " (" + characterPosition.getxPosition() + "," + characterPosition.getyPosition() + ")";
         }

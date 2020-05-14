@@ -19,26 +19,30 @@ public class Application{
 
     private void runApplication(){
         BoardDisplayer.displayBoard(board);
-        while(board.isNotSimulationOver()){
+        while(!board.isSimulationOver()){
             for (Map.Entry<Integer, Human> entry : board.getMapOfHuman().entrySet()) {
                 Integer key = entry.getKey();
                 Human human = entry.getValue();
                 Move.moveRandomlyHuman(human,board);
+                System.out.println(human.toString());
 
             }
             for (Map.Entry<Integer, Infected> entry : board.getMapOfInfected().entrySet()) {
                 Integer key = entry.getKey();
                 Infected infected = entry.getValue();
                 Move.moveInfected(infected,board);
+                System.out.println(infected.toString());
+                infected.increaseAttack();
             }
             board.fight();
             System.out.println(" ");
             BoardDisplayer.displayBoard(board);
+
         }
     }
 
     public static void main(String[] args){
-        SimpleBoardCreator boardCreator = new SimpleBoardCreator(2,2);
+        SimpleBoardCreator boardCreator = new SimpleBoardCreator(12,2);
         Application app = new Application(boardCreator);
         app.runApplication();
     }
