@@ -8,6 +8,10 @@ public class Infected extends Character{
         super();
     }
 
+    public Infected(int healthPoints, int attackDamage){
+        super(healthPoints, attackDamage);
+    }
+
 
     @Override
     public String toString(){
