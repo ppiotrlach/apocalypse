@@ -30,7 +30,7 @@ public class SimpleBoard implements IBoardStatics {
     }
 
     //this method adds a Human to a random Tile on board
-    public void addHuman(Human human){
+    private void addHuman(Human human){
         if(numberOfAllies + numberOfEnemies <= IBoardStatics.HEIGHT * IBoardStatics.WIDTH) {
             grid.addHuman(human, mapOfHuman, numberOfAllies);
             numberOfAllies++;
@@ -51,45 +51,19 @@ public class SimpleBoard implements IBoardStatics {
         }
     }
 
-    public void setTileToHuman(int x, int y, Human human){
-        grid.setTileToHuman(x,y,human);
-    }
-
-    public void setTileToInfected(int x, int y, Infected infected){
-        grid.setTileToInfected(x,y,infected);
-    }
-
-    public boolean isTileFree(int x, int y){
-        return grid.isTileFree(x,y);
-    }
-
-    public boolean isTileHumanFree(int x, int y){
-        return grid.isTileHumanFree(x,y);
-    }
-
-    public boolean isTileInfectedFree(int x, int y){
-        return grid.isTileInfectedFree(x,y);
-    }
-
-
-//    public void findClosestEnemy() {
-//        //not done
-//
-//    }
-
-    public boolean isNotSimulationOver(){
+    public boolean isSimulationOver(){
         if(mapOfHuman.isEmpty() && mapOfInfected.isEmpty()){
-            System.out.println("Remis");
-            return false;
+            System.out.println("Draw");
+            return true;
         }else if(mapOfHuman.isEmpty()) {
-            System.out.println("Wygrana obcych");
-            return false;
+            System.out.println("Infected win");
+            return true;
         }else if(mapOfInfected.isEmpty()) {
-            System.out.println("Wygrana ludzi");
-            return false;
+            System.out.println("Humans win");
+            return true;
         }
         else{
-            return true;
+            return false;
         }
     }
 
@@ -108,8 +82,13 @@ public class SimpleBoard implements IBoardStatics {
     public void decreaseNumberOfAllies(){
         numberOfAllies--;
     }
+
     public void decreaseNumberOfEnemies(){
         numberOfEnemies--;
+    }
+
+    public Tile getTile(int x, int y){
+        return grid.getTile(x,y);
     }
 }
 
@@ -138,7 +117,6 @@ public class SimpleBoard implements IBoardStatics {
 //        }
 //
 //    }
-
 //        Random rand = new Random();
 //        int temporary = numberOfAllies + 1;
 //        while(numberOfAllies < temporary){
@@ -147,13 +125,10 @@ public class SimpleBoard implements IBoardStatics {
 //            if(grid[x][y].isHumanFree()) {
 //                grid[x][y].setHuman(human);
 //                human.setPosition(x, y);
-
 //
 //    public Tile[][] getReferenceToGrid(){
 //        return grid;
 //    }
-
-
 //    public void addCharacterable(Characterable characterable){
 //
 //        Random rand = new Random();
@@ -184,3 +159,27 @@ public class SimpleBoard implements IBoardStatics {
 //            throw new ClassNotPreparedException();
 //        }
 //
+//    public void setTileToHuman(int x, int y, Human human){
+//        grid.setTileToHuman(x,y,human);
+//    }
+//
+//    public void setTileToInfected(int x, int y, Infected infected){
+//        grid.setTileToInfected(x,y,infected);
+//    }
+//
+//    public boolean isTileFree(int x, int y){
+//        return grid.isTileFree(x,y);
+//    }
+//
+//    public boolean isTileHumanFree(int x, int y){
+//        return grid.isTileHumanFree(x,y);
+//    }
+//
+//    public boolean isTileInfectedFree(int x, int y){
+//        return grid.isTileInfectedFree(x,y);
+//    }
+//
+//    public void findClosestEnemy() {
+//        //not done
+//
+//    }

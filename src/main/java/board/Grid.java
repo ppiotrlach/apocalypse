@@ -67,28 +67,8 @@ public class Grid {
         }
     }
 
-    public Tile tile(int x, int y){
+    public Tile getTile(int x, int y){
         return grid[x][y];
-    }
-
-    public void setTileToHuman(int x, int y, Human human){
-            grid[x][y].setHuman(human);
-    }
-
-    public void setTileToInfected(int x, int y, Infected infected){
-        grid[x][y].setInfected(infected);
-    }
-
-    public boolean isTileFree(int x, int y){
-        return grid[x][y].isFree();
-    }
-
-    public boolean isTileHumanFree(int x, int y){
-        return grid[x][y].isHumanFree();
-    }
-
-    public boolean isTileInfectedFree(int x, int y){
-        return grid[x][y].isInfectedFree();
     }
 
     public void fight(SimpleBoard board){

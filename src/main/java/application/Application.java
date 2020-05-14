@@ -1,6 +1,6 @@
 package application;
 
-import board.Move;
+import move.Move;
 import board.SimpleBoard;
 import boardCreator.SimpleBoardCreator;
 import character.Human;
@@ -19,7 +19,7 @@ public class Application{
 
     private void runApplication(){
         BoardDisplayer.displayBoard(board);
-        while(board.isNotSimulationOver()){
+        while(!board.isSimulationOver()){
             for (Map.Entry<Integer, Human> entry : board.getMapOfHuman().entrySet()) {
 //                Integer key = entry.getKey();
                 Human human = entry.getValue();
@@ -39,7 +39,7 @@ public class Application{
     }
 
     public static void main(String[] args){
-        SimpleBoardCreator boardCreator = new SimpleBoardCreator(3,3);
+        SimpleBoardCreator boardCreator = new SimpleBoardCreator(5,5);
         Application app = new Application(boardCreator);
         app.runApplication();
     }

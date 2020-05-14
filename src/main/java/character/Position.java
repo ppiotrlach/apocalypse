@@ -1,4 +1,4 @@
-package position;
+package character;
 
 public class Position{
 

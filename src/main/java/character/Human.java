@@ -6,8 +6,4 @@ public class Human extends Character {
         super(55, 15);
     }
 
-    @Override
-    public String toString(){
-        return super.toString();
-    }
 }

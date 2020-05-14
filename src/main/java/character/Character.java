@@ -1,10 +1,9 @@
 package character;
 
-import position.Position;
 
 public abstract class Character {
 
-    protected int characterID; //yes, it is useless XD
+    protected int characterID;
 
     protected int healthPoints;
     protected int attackDamage;
@@ -50,7 +49,7 @@ public abstract class Character {
 
     @Override
     public String toString() {
-            return "character " + this.getClass() + "ID "+ characterID + " "
+            return "character " + this.getClass() + " ID "+ characterID + " "
                     + ", health, attack damage and Position " + healthPoints + " " + attackDamage
                     + " (" + characterPosition.getxPosition() + "," + characterPosition.getyPosition() + ")";
         }

@@ -1,4 +1,4 @@
-package board;
+package move;
 
 import java.util.Random;
 
