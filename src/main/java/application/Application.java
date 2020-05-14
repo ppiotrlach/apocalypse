@@ -42,7 +42,7 @@ public class Application{
     }
 
     public static void main(String[] args){
-        SimpleBoardCreator boardCreator = new SimpleBoardCreator(12,2);
+        SimpleBoardCreator boardCreator = new SimpleBoardCreator(5,5);
         Application app = new Application(boardCreator);
         app.runApplication();
     }
