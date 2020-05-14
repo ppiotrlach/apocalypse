@@ -4,17 +4,12 @@ import position.Position;
 
 public abstract class Character {
 
-    private int characterID; //yes, it is useless XD
+    protected int characterID; //yes, it is useless XD
 
-    private int healthPoints;
-    private int attackDamage;
+    protected int healthPoints;
+    protected int attackDamage;
 
-    private Position characterPosition;
-
-    public Character()
-    {
-        this(15,20);
-    }
+    protected Position characterPosition;
 
     public Character(int healthPoints, int attackDamage){
         this.healthPoints = healthPoints;

@@ -21,15 +21,16 @@ public class Application{
         BoardDisplayer.displayBoard(board);
         while(board.isNotSimulationOver()){
             for (Map.Entry<Integer, Human> entry : board.getMapOfHuman().entrySet()) {
-                Integer key = entry.getKey();
+//                Integer key = entry.getKey();
                 Human human = entry.getValue();
                 Move.moveRandomlyHuman(human,board);
 
             }
             for (Map.Entry<Integer, Infected> entry : board.getMapOfInfected().entrySet()) {
-                Integer key = entry.getKey();
+//                Integer key = entry.getKey();
                 Infected infected = entry.getValue();
                 Move.moveInfected(infected,board);
+                infected.increaseAttack();
             }
             board.fight();
             System.out.println(" ");
@@ -38,7 +39,7 @@ public class Application{
     }
 
     public static void main(String[] args){
-        SimpleBoardCreator boardCreator = new SimpleBoardCreator(2,2);
+        SimpleBoardCreator boardCreator = new SimpleBoardCreator(3,3);
         Application app = new Application(boardCreator);
         app.runApplication();
     }

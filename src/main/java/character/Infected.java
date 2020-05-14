@@ -5,7 +5,11 @@ public class Infected extends Character{
     //private int viewRange;//not done
 
     public Infected(){
-        super();
+        super(40, 15);
+    }
+
+    public void increaseAttack(){
+        this.attackDamage += 1;
     }
 
 
