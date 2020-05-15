@@ -24,17 +24,20 @@ public class Application{
 //                Integer key = entry.getKey();
                 Human human = entry.getValue();
                 Move.moveRandomlyHuman(human,board);
+                System.out.println(human.toString());
 
             }
             for (Map.Entry<Integer, Infected> entry : board.getMapOfInfected().entrySet()) {
 //                Integer key = entry.getKey();
                 Infected infected = entry.getValue();
                 Move.moveInfected(infected,board);
+                System.out.println(infected.toString());
                 infected.increaseAttack();
             }
             board.fight();
             System.out.println(" ");
             BoardDisplayer.displayBoard(board);
+
         }
     }
 

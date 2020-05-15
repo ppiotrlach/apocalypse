@@ -98,8 +98,6 @@ public class SimpleBoard implements IBoardStatics {
 
 //        grid = new Tile[IBoardStatics.HEIGHT][IBoardStatics.WIDTH];
 //        grid.initGrid(numberOfAllies,numberOfEnemies);
-
-
 //    private void initGrid(int numberOfAllies, int numberOfEnemies){
 //
 //        for (int i = 0; i < IBoardStatics.HEIGHT; i++) {
@@ -183,3 +181,8 @@ public class SimpleBoard implements IBoardStatics {
 //        //not done
 //
 //    }
+//    public void findClosestEnemy() {
+//        //not done
+//
+//    }
+

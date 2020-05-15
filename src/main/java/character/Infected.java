@@ -5,14 +5,15 @@ public class Infected extends Character {
     //private int viewRange;//not done
 
     public Infected() {
+
         super(40, 15);
     }
 
     public Infected(int healthPoints, int attackDamage){
-        super(healthPoints,attackDamage);
+        super(healthPoints, attackDamage);
     }
 
-    public void increaseAttack() {
+    public void increaseAttack(){
         this.attackDamage += 1;
     }
 

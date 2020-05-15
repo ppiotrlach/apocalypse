@@ -1,5 +1,6 @@
 package position;
 
+
 import character.Position;
 import org.junit.Before;
 import org.junit.Test;
