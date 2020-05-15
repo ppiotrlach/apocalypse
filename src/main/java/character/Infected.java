@@ -8,6 +8,10 @@ public class Infected extends Character {
         super(40, 15);
     }
 
+    public Infected(int healthPoints, int attackDamage){
+        super(healthPoints,attackDamage);
+    }
+
     public void increaseAttack() {
         this.attackDamage += 1;
     }
