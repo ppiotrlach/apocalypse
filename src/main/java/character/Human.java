@@ -6,4 +6,8 @@ public class Human extends Character {
         super(55, 15);
     }
 
+    public Human(int healthPoints, int attackDamage){
+        super(healthPoints,attackDamage);
+    }
+
 }
