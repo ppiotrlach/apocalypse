@@ -41,9 +41,19 @@ public class Application{
         }
     }
 
+//    public static void main(String[] args){
+//        SimpleBoardCreator boardCreator = new SimpleBoardCreator(2,2);
+//        Application app = new Application(boardCreator);
+//        app.runApplication();
+//    }
+
     public static void main(String[] args){
-        SimpleBoardCreator boardCreator = new SimpleBoardCreator(5,5);
+
+        ArgumentParser arg = new ArgumentParser(args);
+
+        SimpleBoardCreator boardCreator = new SimpleBoardCreator(arg.getNumber(0), arg.getNumber(1));
         Application app = new Application(boardCreator);
         app.runApplication();
     }
+
 }
