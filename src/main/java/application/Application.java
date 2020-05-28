@@ -49,11 +49,17 @@ public class Application{
 
     public static void main(String[] args){
 
-        ArgumentParser arg = new ArgumentParser(args);
+        DataCollector arg = new DataCollector(args);
 
-        SimpleBoardCreator boardCreator = new SimpleBoardCreator(arg.getNumber(0), arg.getNumber(1));
+
+        SimpleBoardCreator boardCreator = new SimpleBoardCreator(arg.getEnteredAmountOfHuman(), arg.getEnteredAmountOfInfected());
         Application app = new Application(boardCreator);
         app.runApplication();
-    }
+//        System.out.println(arg.getEnteredAmountOfHuman());
+//        System.out.println(arg.getEnteredAmountOfInfected());
+//        System.out.println(arg.getEnteredMapHeight());
+//        System.out.println(arg.getEnteredMapWidth());
 
+
+    }
 }
