@@ -4,6 +4,10 @@ import character.Human;
 import character.Infected;
 import character.Personage;
 
+/***
+ * Object contains two objects Human and Infected meaning that only one human and one infected can stand on each position
+ * Contains system of fighting between two characters and returns TileResolver with true value for every character that died
+ */
 public class Tile {
 
     private Human human;
@@ -71,17 +75,3 @@ public class Tile {
     }
 
 }
-
-
-//    public void setCharacterable(Characterable characterable){
-//        if(characterable instanceof Infected){
-//            this.infected = (Infected)characterable;
-//        }
-//        else if(characterable instanceof Human){
-//            this.human = (Human)characterable;
-//        }
-//        else{
-//            throw new ClassNotPreparedException();
-//        }
-//    }
-//

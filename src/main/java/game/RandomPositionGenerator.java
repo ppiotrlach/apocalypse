@@ -2,6 +2,9 @@ package game;
 
 import java.util.Random;
 
+/***
+ * Generates two random coordinates are passes them to Position to check if there already is Position with these arguments
+ */
 public class RandomPositionGenerator {
 
     public Position generateRandomPosition(SimpleBoard simpleBoard) {
