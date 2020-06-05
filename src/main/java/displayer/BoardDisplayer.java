@@ -1,21 +1,21 @@
 package displayer;
 
+import game.Board;
 import game.Position;
-import game.SimpleBoard;
 
 public class BoardDisplayer {
 
-    public String displayBoard(SimpleBoard simpleBoard){
+    public String displayBoard(Board board){
         String result = "";
-        for (int i = 0; i < simpleBoard.getMapHeight(); i++) {
-            for (int j = 0; j < simpleBoard.getMapWidth(); j++) {
-                if(simpleBoard.isTileFree(Position.createPosition(i,j))){
+        for (int i = 0; i < board.getMapHeight(); i++) {
+            for (int j = 0; j < board.getMapWidth(); j++) {
+                if(board.isTileFree(Position.createPosition(i,j))){
                         result += " 0 ";
                 }
-                else if(simpleBoard.isTileHumanFree(Position.createPosition(i,j))){
+                else if(board.isTileHumanFree(Position.createPosition(i,j))){
                         result += " I ";
                 }
-                else if(simpleBoard.isTileInfectedFree(Position.createPosition(i,j))){
+                else if(board.isTileInfectedFree(Position.createPosition(i,j))){
                         result += " H ";
                 }
                 else{

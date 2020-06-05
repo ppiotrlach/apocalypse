@@ -1,13 +1,12 @@
 package character;
 
 public interface Personage {
+    void setCharacterID(int characterID);
 
-    public void setCharacterID(int characterID);
+    int getAttackDamage();
 
-    public int getAttackDamage();
+    void takeDamage(int opponentsAttackDamage);
 
-    public void takeDamage(int opponentsAttackDamage);
-
-    public int getHealthPoints();
+    int getHealthPoints();
 
 }

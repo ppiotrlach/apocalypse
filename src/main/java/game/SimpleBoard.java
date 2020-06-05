@@ -10,6 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/***
+ * Maps Positions to Tiles
+ * Contains information about map Size
+ * Has abilities to add specified characters to map
+ * Can command Personage to Move, fight or increase its attack
+ */
 public class SimpleBoard implements Board {
 
     private Map<Position,Tile> map;

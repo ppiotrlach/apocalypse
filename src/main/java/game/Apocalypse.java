@@ -7,10 +7,15 @@ import move.RandomMoveGenerator;
 
 import java.util.List;
 
-// objects of this class are meant to be created by class SimpleBoardCreator
+/***
+ * Creating Apocalypse takes place in GameCreator, as it is a implementation of Game Interface
+ * It is a center of the whole project, it always contains current numbers of allies and enemies and state of the game
+ * Checks if simulation has ended every move
+ * It gives commands to other classes
+ */
 public class Apocalypse implements Game{
 
-    private SimpleBoard simpleBoard;
+    private Board board;
     private GameState stateOfGame;
     private int numberOfAllies = 0;
     private int numberOfEnemies = 0;
@@ -19,7 +24,7 @@ public class Apocalypse implements Game{
 
 
     public Apocalypse(int numberOfNewAllies, int numberOfNewEnemies, int mapHeight, int mapWidth){
-        this.simpleBoard = new SimpleBoard(mapHeight, mapWidth);
+        this.board = new SimpleBoard(mapHeight, mapWidth);
         this.initGame(numberOfNewAllies,numberOfNewEnemies);
         stateOfGame = GameState.IN_PROGRESS;
     }
@@ -35,20 +40,20 @@ public class Apocalypse implements Game{
     }
 
     private void addHuman(Human human){
-        simpleBoard.addHumanToMap(human, numberOfAllies);
+        board.addHumanToMap(human, numberOfAllies);
         numberOfAllies++;
     }
 
 // new feature to add - new infected spawns when human dies,
     public void addInfected(Infected infected){
-        simpleBoard.addInfectedToMap(infected, numberOfEnemies);
+        board.addInfectedToMap(infected, numberOfEnemies);
         numberOfEnemies++;
     }
 
     public void everyoneFight(){
         int amountOfHumanThatDied = 0;
         int amountOfInfectedThatDied = 0;
-        List<TileResolver> resolvers = simpleBoard.fight();
+        List<TileResolver> resolvers = board.fight();
         for (TileResolver resolver : resolvers) {
             if(resolver.checkIfHumanDied()){
                 amountOfHumanThatDied++;
@@ -89,142 +94,19 @@ public class Apocalypse implements Game{
     }
 
     public String displayGame(){
-        return boardDisplayer.displayBoard(simpleBoard);
+        return boardDisplayer.displayBoard(board);
     }
 
     public void everyoneMove(){
-        randomMoveGen.moveRandomlyEveryone(simpleBoard);
+        randomMoveGen.moveRandomlyEveryone(board);
     }
 
     public void increaseEveryInfectedAttack(){
-        simpleBoard.increaseInfectedAttack();
+        board.increaseInfectedAttack();
     }
 
     public String displayAllCharactersOnBoard(){
-        return simpleBoard.displayAllCharactersOnMap();
+        return board.displayAllCharactersOnMap();
     }
 
 }
-
-
-//    //this method adds a Human to a random Tile on board
-//    private void addHuman(Human human){
-//        if(numberOfAllies + numberOfEnemies <= IBoardStatics.HEIGHT * IBoardStatics.WIDTH) {
-//            grid.addHuman(human, mapOfHuman, numberOfAllies);
-//            numberOfAllies++;
-//        }
-//        else{
-//            throw new NullPointerException();
-//        }
-//    }
-//
-//    //this method adds an Infected to a random tile on board
-//    public void addInfected(Infected infected){
-//        if(numberOfAllies + numberOfEnemies <= IBoardStatics.HEIGHT * IBoardStatics.WIDTH) {
-//            grid.addInfected(infected, mapOfInfected, numberOfEnemies);
-//            numberOfEnemies++;
-//        }
-//        else{
-//            throw new NullPointerException();
-//        }
-//    }
-
-//    private Grid grid;
-//    grid = new Grid(numberOfNewAllies, numberOfNewEnemies, mapOfHuman, mapOfInfected);
-//    public Tile getTile(int x, int y){
-//    return grid.getTile(x,y);
-//}
-//    public void fight(){
-//        grid.fight(this);
-//    }
-
-//        grid = new Tile[IBoardStatics.HEIGHT][IBoardStatics.WIDTH];
-//        grid.initGrid(numberOfAllies,numberOfEnemies);
-//    private void initGrid(int numberOfAllies, int numberOfEnemies){
-//
-//        for (int i = 0; i < IBoardStatics.HEIGHT; i++) {
-//            for (int j = 0; j < IBoardStatics.WIDTH; j++) {
-//                grid[i][j] = new Tile();
-//            }
-//        }
-//
-//        while(numberOfAllies<numberOfAllies){
-//            this.addHuman(new Human());
-//        }
-//
-//        while(this.numberOfEnemies<numberOfEnemies) {
-//            this.addInfected(new Infected());
-//        }
-//
-//    }
-//        Random rand = new Random();
-//        int temporary = numberOfAllies + 1;
-//        while(numberOfAllies < temporary){
-//            int x = rand.nextInt(IBoardStatics.HEIGHT);
-//            int y = rand.nextInt(IBoardStatics.WIDTH);
-//            if(grid[x][y].isHumanFree()) {
-//                grid[x][y].setHuman(human);
-//                human.setPosition(x, y);
-//
-//    public Tile[][] getReferenceToGrid(){
-//        return grid;
-//    }
-//    public void addCharacterable(Characterable characterable){
-//
-//        Random rand = new Random();
-//
-//        if(characterable instanceof Human) {
-//            int temporary = numberOfAllies + 1;
-//            while(numberOfAllies < temporary){
-//                int x = rand.nextInt(HEIGHT);
-//                int y = rand.nextInt(WIDTH);
-//                if (grid[x][y].isFree()) {
-//                    grid[x][y].setCharacterable(characterable);
-//                    numberOfAllies++;
-//                }
-//            }
-//        }
-//        else if (characterable instanceof Infected){
-//            int temporary = numberOfEnemies + 1;
-//            while(numberOfEnemies<temporary){
-//                int x = rand.nextInt(HEIGHT);
-//                int y = rand.nextInt(WIDTH);
-//                if (grid[x][y].isFree()) {
-//                    grid[x][y].setCharacterable(characterable);
-//                    numberOfEnemies++;
-//                }
-//            }
-//        }
-//        else{
-//            throw new ClassNotPreparedException();
-//        }
-//
-//    public void setTileToHuman(int x, int y, Human human){
-//        grid.setTileToHuman(x,y,human);
-//    }
-//
-//    public void setTileToInfected(int x, int y, Infected infected){
-//        grid.setTileToInfected(x,y,infected);
-//    }
-//
-//    public boolean isTileFree(int x, int y){
-//        return grid.isTileFree(x,y);
-//    }
-//
-//    public boolean isTileHumanFree(int x, int y){
-//        return grid.isTileHumanFree(x,y);
-//    }
-//
-//    public boolean isTileInfectedFree(int x, int y){
-//        return grid.isTileInfectedFree(x,y);
-//    }
-//
-//    public void findClosestEnemy() {
-//        //not done
-//
-//    }
-//    public void findClosestEnemy() {
-//        //not done
-//
-//    }
-

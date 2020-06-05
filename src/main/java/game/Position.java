@@ -3,6 +3,9 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * There can only be one object of Position with the same arguments
+ */
 public class Position{
 
     private int xPosition;
@@ -48,13 +51,3 @@ public class Position{
 
 }
 
-
-//
-//    public void setxPosition(int xPosition){
-//        this.xPosition = xPosition;
-//    }
-//
-//
-//    public void setyPosition(int yPosition){
-//        this.yPosition = yPosition;
-//    }

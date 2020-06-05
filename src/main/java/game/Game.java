@@ -15,4 +15,6 @@ public interface Game {
     void everyoneMove();
 
     void increaseEveryInfectedAttack();
+
+    String displayAllCharactersOnBoard();
 }

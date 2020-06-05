@@ -1,6 +1,9 @@
 package character;
 
-
+/***
+ * Character is a object on Tile it can be a Human or Infected,
+ * It has character ID Attack damage and healthPoints
+ */
 public abstract class Character implements Personage {
 
     protected int characterID;
@@ -13,7 +16,10 @@ public abstract class Character implements Personage {
         this.attackDamage = attackDamage;
     }
 
-    // ID is set when character is added to the board
+    /***
+     *     // ID is set when character is added to the board
+     * @param characterID it's number of its nation at the time
+     */
     public void setCharacterID(int characterID){
         this.characterID = characterID;
     }
@@ -37,31 +43,3 @@ public abstract class Character implements Personage {
         }
 
 }
-
-//                    + " (" + characterPosition.getxPosition() + "," + characterPosition.getyPosition() + ")";
-//
-//    public int getCharacterID(){
-//        return characterID;
-//    }
-
-//   public void setPosition(int xCoordinate, int yCoordinate) {
-//        characterPosition.setPosition(xCoordinate, yCoordinate);
-//    }
-//
-//    public Position getPosition(){
-//        return characterPosition;
-//    }
-
-//
-//    public void setHealthPoints(int healthPoints) {
-//        this.healthPoints = healthPoints;
-//    }
-//
-//    public void setAttackDamage(int attackDamage) {
-//        this.attackDamage = attackDamage;
-//    }
-//
-//    @Override
-//    public boolean isInTheSameLocation(Character character2) {
-//        return x == character2.getXCoordinate() && y == character2.getYCoordinate();
-//    }

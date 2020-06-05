@@ -1,15 +1,16 @@
 package application;
 
-import game.GameState;
-import game.Apocalypse;
+import game.Game;
 import game.GameCreator;
+import game.GameState;
+import game.ApocalypseCreator;
 
 public class Application{
 
-    private Apocalypse game;
+    private Game game;
 
-    private Application(GameCreator boardCreat){
-        game = boardCreat.createBoard();
+    private Application(GameCreator gameCreator){
+        game = gameCreator.createBoard();
     }
 
     private void runApplication(){
@@ -29,9 +30,9 @@ public class Application{
     public static void main(String[] args){
         DataCollector arg = new DataCollector(args);
 
-        GameCreator boardCreator = new GameCreator(arg.getEnteredAmountOfHuman(),arg.getEnteredAmountOfInfected(),
+        GameCreator gameCreator = new ApocalypseCreator(arg.getEnteredAmountOfHuman(),arg.getEnteredAmountOfInfected(),
                                                     arg.getEnteredMapHeight() ,arg.getEnteredMapWidth());
-        Application app = new Application(boardCreator);
+        Application app = new Application(gameCreator);
         app.runApplication();
 
     }

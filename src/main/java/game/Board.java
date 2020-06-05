@@ -4,6 +4,7 @@ import character.Human;
 import character.Infected;
 
 import java.util.List;
+import java.util.Map;
 
 public interface Board {
 
@@ -18,5 +19,28 @@ public interface Board {
         void moveInfected(Position oldPosition, Position newPosition);
 
         void increaseInfectedAttack();
+
+        boolean isTileInfectedFree(Position position);
+
+        boolean isTileFree(Position position);
+
+        boolean isTileHumanFree(Position position);
+
+        void setTileToHuman(Position position, Human human);
+
+        void setTileToInfected(Position position, Infected infected);
+
+        void removeHumanFromTile(Position position);
+
+        void removeInfectedFromTile(Position position);
+
+        int getMapHeight();
+
+        int getMapWidth();
+
+        Map<Position,Tile> getMap();
+
+        String displayAllCharactersOnMap();
+
 
 }
