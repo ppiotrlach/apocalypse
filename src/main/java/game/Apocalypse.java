@@ -53,8 +53,8 @@ public class Apocalypse implements Game{
     public void everyoneFight(){
         int amountOfHumanThatDied = 0;
         int amountOfInfectedThatDied = 0;
-        List<TileResolver> resolvers = board.fight();
-        for (TileResolver resolver : resolvers) {
+        List<TileResult> resolvers = board.fight();
+        for (TileResult resolver : resolvers) {
             if(resolver.checkIfHumanDied()){
                 amountOfHumanThatDied++;
             }

@@ -1,0 +1,12 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+(*) --> "Set amount of characters and map size"
+--> "Start Program"
+--> "Put characters on the board"
+--> "Run simulation"
+--> "Seperately evaluate each character's
+ turn until one of nation extinct"
+--> (*)
+@enduml

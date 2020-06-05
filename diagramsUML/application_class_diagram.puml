@@ -1,0 +1,81 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+
+
+package "application"{
+    class Application{
+        - SimpleBoard board
+         - Application(SimpleBoardCreator boardCreat)
+         - void runApplication()
+    }
+}
+package "boardCreator"{
+    class SimpleBoardCreator{
+    - int numberOfAllies
+    - int numberOfEnemies
+    + SimpleBoardCreator(int numberOfAllies, int numberOfEnemies)
+    + SimpleBoard createBoard()
+    }
+}
+
+package "board"{
+    class Grid{
+
+    }
+    abstract class Move{
+
+    }
+    enum RandomMoveGenerator{
+
+    }
+    class SimpleBoard{
+
+    }
+    class Tile{
+
+    }
+}
+
+
+Grid *-- Tile
+SimpleBoard *-- Grid
+Move *-- RandomMoveGenerator
+
+package "displayer"{
+    abstract class BoardDisplayer{
+        + static void displayBoard(SimpleBoard board)
+    }
+}
+
+package "character"{
+    abstract class Character{
+
+    }
+    class Human{
+
+    }
+    class Infected{
+
+    }
+    class Position{
+
+    }
+}
+
+Character <|-[hidden]up- Human
+Character <|-[hidden]up- Infected
+Character *-- Position
+
+
+Application o-- BoardDisplayer
+Application o-- SimpleBoardCreator
+SimpleBoardCreator o-- SimpleBoard
+Application *-- SimpleBoard
+Human --* Tile
+Infected --* Tile
+Move --o Application
+
+
+@enduml

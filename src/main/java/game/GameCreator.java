@@ -2,6 +2,6 @@ package game;
 
 public interface GameCreator {
 
-    Apocalypse createBoard();
+    Game createBoard();
 
 }

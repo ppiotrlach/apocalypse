@@ -1,0 +1,33 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+
+start
+:Put the human on the map;
+
+-[#black]->
+partition "Each turn" {
+if (Is human alive) then (yes)
+    -[#black]->
+:Move human randomly;
+-[#black]->
+if (Is opponent on the same tile) then (yes)
+  -[#black]->
+  :Attack him;
+
+  -[#black]->
+else (no)
+    -[#black]->
+endif
+    -[#black]->
+    else (no)
+    -[#black]->
+endif
+}
+-[#black]->
+:Create new infected (not yet in code) ;
+
+
+stop
+@enduml
