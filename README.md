@@ -12,6 +12,7 @@ or
 "gradlew run --agrs 
 
 "[numberOfAllies] [numberOfEnemies] [mapHeight] [mapWidth]"
+
 If you pass an invalid argument application will use a standard number(5).
 
 numberOfAllies + numberOfEnemies must be <= mapHeight * mapWidth
