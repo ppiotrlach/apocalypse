@@ -6,6 +6,7 @@ import java.util.List;
 /***
  * There can only be one object of Position with the same arguments
  */
+
 public class Position{
 
     private int xPosition;

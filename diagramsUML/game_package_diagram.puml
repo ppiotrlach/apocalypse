@@ -1,0 +1,148 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+
+
+package "game"{
+    class "Apocalypse"{
+          - Board board
+            - GameState stateOfGame
+            - int numberOfAllies
+            - int numberOfEnemies
+            - BoardDisplayer boardDisplayer
+            - RandomMoveGenerator randomMoveGen
+
+             + Apocalypse(int numberOfNewAllies, int numberOfNewEnemies, int mapHeight, int mapWidth)
+             - void initGame(int numberOfNewAllies,int numberOfNewEnemies)
+             - void addHuman(Human human)
+             + void addInfected(Infected infected)
+             + void everyoneFight()
+             + void checkIsSimulationOver()
+              - void decreaseNumberOfAllies(int number)
+               - void decreaseNumberOfEnemies(int number)
+                + GameState getStateOfGame()
+                + String displayGame()
+                + void everyoneMove()
+                + void increaseEveryInfectedAttack()
+                + String displayAllCharactersOnBoard()
+    }
+    interface "Board"{
+     ~void addHumanToMap(Human human, int numberOfAllies)
+     ~void addInfectedToMap(Infected infected, int numberOfEnemies)
+     ~List<TileResult> fight()
+     ~void moveHuman(Position oldPosition, Position newPosition)
+     ~void moveInfected(Position oldPosition, Position newPosition)
+     ~void increaseInfectedAttack()
+    }
+
+    interface "Game"{
+        ~void everyoneFight()
+        ~ void checkIsSimulationOver()
+        ~GameState getStateOfGame()
+       ~ String displayGame()
+        ~void everyoneMove()
+        ~void increaseEveryInfectedAttack()
+    }
+    interface "GameCreator"{
+        ~Game createBoard()
+    }
+
+    class "ApocalypseCreator"{
+        - int numberOfAllies
+        - int numberOfEnemies
+        - int mapHeight
+        - int mapWidth
+        + GameCreator(int numberOfAllies, int numberOfEnemies, int height, int width)
+        + Apocalypse createBoard()
+    }
+
+    enum "GameState"{
+            ~START(1), IN_PROGRESS(2), END(3)
+            - int state
+            ~GameState(int state)
+    }
+    class "Position"{
+         - int xPosition
+         - int yPosition
+         - static List<Position> positionList = new ArrayList<>()
+
+         - Position(int xPosition, int yPosition)
+         + static Position createPosition(int x, int y)
+         + int getxCoordinate()
+         + int getyCoordinate()
+         + boolean equals(Object object)
+    }
+    class "RandomPositionGenerator"{
+        + Position generateRandomPosition(Board board)
+    }
+    class SimpleBoard{
+        - Map<Position,Tile> map;
+            + final int mapHeight;
+            + final int mapWidth;
+            - RandomPositionGenerator randomPosGen;
+            - PersonageDisplayer personDisplay = new PersonageDisplayer()
+
+            + SimpleBoard(int mapHeight, int mapWidth)
+            - void initBoard()
+            + void addHumanToMap(Human human, int numberOfAllies)
+             + void addInfectedToMap(Infected infected, int numberOfEnemies)
+              - boolean isPossibleToAddNewCharacter(int numberOfSpecifiedNation)
+              + List<TileResult> fight()
+               - void setPersonsCharacterID(Position position, Personage person, int characterID)
+               + boolean isTileInfectedFree(Position position)
+               + boolean isTileFree(Position position)
+               + boolean isTileHumanFree(Position position)
+                + void setTileToHuman(Position position, Human human)
+                + void setTileToInfected(Position position, Infected infected)
+                + void removeHumanFromTile(Position position)
+                + void removeInfectedFromTile(Position position)
+                 + int getMapHeight()
+                 + int getMapWidth()
+                 + Map<Position,Tile> getMap()
+                 + void moveHuman(Position oldPosition, Position newPosition)
+                 + void moveInfected(Position oldPosition, Position newPosition)
+                 + void increaseInfectedAttack()
+                 + String displayAllCharactersOnMap()
+    }
+    class "Tile"{
+                 - Human human
+                    - Infected infected
+
+                    - boolean isInteractionPossible()
+                    + boolean isInfectedFree()
+                    + boolean isHumanFree()
+                    + boolean isFree()
+                    + void setHuman(Human human)
+                    + void setInfected(Infected infected)
+                    + void removeHuman()
+                    + void removeInfected()
+                    + void setPersonsCharacterID(Personage person, int characterID)
+                    + Human getHuman()
+                    + Infected getInfected()
+                    + TileResult tileFights()
+
+    }
+    class TileResult {
+            - boolean humanDied
+                - boolean infectedDied
+
+                + TileResult(boolean didHumanDie, boolean didInfectedDie)
+                 + boolean checkIfHumanDied()
+                    + boolean checkIfInfectedDied()
+
+    }
+
+}
+TileResult --* Tile
+TileResult --* Board
+TileResult --* Game
+Apocalypse --|> Game
+SimpleBoard --|> Board
+ApocalypseCreator--|>GameCreator
+Tile --* Board
+Position --* Board
+RandomPositionGenerator --* Board
+GameState --* Game
+
+@enduml

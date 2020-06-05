@@ -1,0 +1,94 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+
+package application{
+            class Application{
+                    - Game game
+                    - Application(GameCreator gameCreat)
+                    - void runApplication()
+                     + static void main(String[] args)
+                            }
+            abstract class ArgumentParser{}
+
+            class DataCollector{}
+}
+
+package character{
+                class Character {}
+                class Human {}
+
+                class Infected {}
+                class Personage {}
+}
+
+package displayer {
+                class BoardDisplayer {}
+                class PersonageDisplayer {}
+}
+
+package game{
+                class Apocalypse {}
+                interface Board {}
+                interface Game {}
+                class ApocalypseCreator {}
+                interface GameCreator {}
+                class GameState {}
+                class Position {}
+                class RandomPositionGenerator {}
+                class SimpleBoard {}
+                class Tile {}
+                class TileResult {}
+}
+
+package move{
+                class Move {}
+                class RandomMoveGenerator {}
+}
+
+
+
+
+DataCollector --|> ArgumentParser
+DataCollector --o Application
+
+Character <|-- Human
+Character <|-- Infected
+
+
+
+Character --|> Personage
+
+
+Board o-- BoardDisplayer
+Application *-- Board
+Human --* Tile
+Infected --* Tile
+Move --o Application
+Move --o RandomMoveGenerator
+Personage --o PersonageDisplayer
+Board --o PersonageDisplayer
+
+
+
+Tile --o Board
+
+TileResult --* Tile
+TileResult --* Board
+TileResult --* Game
+Apocalypse --|> Game
+SimpleBoard --|> Board
+ApocalypseCreator--|>GameCreator
+
+Position --* Board
+RandomPositionGenerator --* Board
+GameState --* Game
+
+GameCreator --o Application
+RandomMoveGenerator --o Game
+BoardDisplayer--o Game
+
+Position --o RandomPositionGenerator
+
+@enduml

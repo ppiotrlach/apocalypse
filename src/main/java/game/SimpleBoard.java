@@ -85,11 +85,11 @@ public class SimpleBoard implements Board {
         }
     }
     
-    public List<TileResolver> fight(){
-        List<TileResolver> resolvers = new ArrayList<>(mapHeight * mapWidth);
+    public List<TileResult> fight(){
+        List<TileResult> resolvers = new ArrayList<>(mapHeight * mapWidth);
         for (Map.Entry<Position, Tile> entry : map.entrySet()) {
             Tile tile = entry.getValue();
-            TileResolver resolver = tile.tileFights();
+            TileResult resolver = tile.tileFights();
             resolvers.add(resolver);
         }
         return resolvers;

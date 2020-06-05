@@ -57,7 +57,7 @@ public class Tile {
         return infected;
     }
 
-    public TileResolver tileFights() {
+    public TileResult tileFights() {
         boolean didHumanDie = false, didInfectedDie = false;
         if (isInteractionPossible()){
             human.takeDamage(infected.getAttackDamage());
@@ -71,7 +71,7 @@ public class Tile {
                 didInfectedDie = true;
             }
         }
-        return new TileResolver(didHumanDie, didInfectedDie);
+        return new TileResult(didHumanDie, didInfectedDie);
     }
 
 }

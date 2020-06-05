@@ -5,12 +5,12 @@ package game;
  * Sends To Board And To Game information about who to extract from the board
  * and how many people died to subtract them from numberOfTheirNation in amount of true values
  */
-public class TileResolver {
+public class TileResult {
 
     private final boolean humanDied;
     private final boolean infectedDied;
 
-    public TileResolver(boolean didHumanDie, boolean didInfectedDie){
+    public TileResult(boolean didHumanDie, boolean didInfectedDie){
         this.humanDied = didHumanDie;
         this.infectedDied = didInfectedDie;
     }

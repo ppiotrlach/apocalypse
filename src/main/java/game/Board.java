@@ -12,7 +12,7 @@ public interface Board {
 
         void addInfectedToMap(Infected infected, int numberOfEnemies);
 
-        List<TileResolver> fight();
+        List<TileResult> fight();
 
         void moveHuman(Position oldPosition, Position newPosition);
 

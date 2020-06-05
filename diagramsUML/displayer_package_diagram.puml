@@ -1,0 +1,17 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+
+package "displayer"{
+    class BoardDisplayer{
+         + String displayBoard(Board board)
+    }
+
+   class PersonageDisplayer{
+        - String personageToStringWithPosition(Personage person, Position pos)
+        + String displayAllLivingCreatures(Map<Position,Tile> map)
+   }
+}
+
+@enduml

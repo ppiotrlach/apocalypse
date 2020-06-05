@@ -1,0 +1,48 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+
+
+package character{
+    abstract class Character{
+            protected int characterID;
+
+                # int healthPoints;
+                # int attackDamage;
+
+                + Character(int healthPoints, int attackDamage)
+                + void setCharacterID(int characterID)
+                 + int getAttackDamage()
+                 + void takeDamage(int opponentsAttackDamage)
+                 + int getHealthPoints()
+                 + String toString()
+    }
+    class Human{
+            + Human()
+            + String toString()
+    }
+     class Infected{
+                + Infected()
+                + String toString()
+                + void increaseAttack()
+        }
+        interface Personage {
+
+            + void setCharacterID(int characterID)
+
+            + int getAttackDamage()
+
+            + void takeDamage(int opponentsAttackDamage)
+
+            + int getHealthPoints()
+            }
+}
+
+Character --|> Personage
+Human --|> Character
+Infected --|> Character
+
+
+
+@enduml
