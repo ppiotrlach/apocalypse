@@ -1,49 +1,35 @@
 package application;
 
-import move.Move;
-import board.SimpleBoard;
-import boardCreator.SimpleBoardCreator;
-import character.Human;
-import character.Infected;
-import displayer.BoardDisplayer;
-
-import java.util.Map;
+import game.GameState;
+import game.Apocalypse;
+import game.GameCreator;
 
 public class Application{
 
-    private SimpleBoard board;
+    private Apocalypse game;
 
-    private Application(SimpleBoardCreator boardCreat){
-        board = boardCreat.createBoard();
+    private Application(GameCreator boardCreat){
+        game = boardCreat.createBoard();
     }
 
     private void runApplication(){
-        BoardDisplayer.displayBoard(board);
-        while(!board.isSimulationOver()){
-            for (Map.Entry<Integer, Human> entry : board.getMapOfHuman().entrySet()) {
-//                Integer key = entry.getKey();
-                Human human = entry.getValue();
-                Move.moveRandomlyHuman(human,board);
-                System.out.println(human.toString());
 
-            }
-            for (Map.Entry<Integer, Infected> entry : board.getMapOfInfected().entrySet()) {
-//                Integer key = entry.getKey();
-                Infected infected = entry.getValue();
-                Move.moveInfected(infected,board);
-                System.out.println(infected.toString());
-                infected.increaseAttack();
-            }
-            board.fight();
-            System.out.println(" ");
-            BoardDisplayer.displayBoard(board);
+        System.out.println(game.displayGame());
 
+        while(game.getStateOfGame() == GameState.IN_PROGRESS){
+            game.everyoneFight();
+            game.everyoneMove();
+            System.out.println(game.displayGame());
+            game.checkIsSimulationOver();
+            game.increaseEveryInfectedAttack();
+            System.out.println(game.displayAllCharactersOnBoard());
         }
     }
 
     public static void main(String[] args){
-        SimpleBoardCreator boardCreator = new SimpleBoardCreator(5,5);
+        GameCreator boardCreator = new GameCreator(10,10 ,10 ,10);
         Application app = new Application(boardCreator);
         app.runApplication();
     }
+
 }

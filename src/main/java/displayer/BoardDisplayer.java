@@ -1,29 +1,31 @@
 package displayer;
 
-import board.IBoardStatics;
-import board.SimpleBoard;
+import game.Position;
+import game.SimpleBoard;
 
-public abstract class BoardDisplayer {
+public class BoardDisplayer {
 
-
-    public static void displayBoard(SimpleBoard board){
-        for (int i = 0; i < IBoardStatics.HEIGHT; i++) {
-            for (int j = 0; j < IBoardStatics.WIDTH; j++) {
-                if(board.getTile(i,j).isFree()){
-                    System.out.print(" 0 ");
+    public String displayBoard(SimpleBoard simpleBoard){
+        String result = "";
+        for (int i = 0; i < simpleBoard.getMapHeight(); i++) {
+            for (int j = 0; j < simpleBoard.getMapWidth(); j++) {
+                if(simpleBoard.isTileFree(Position.createPosition(i,j))){
+                        result += " 0 ";
                 }
-                else if(board.getTile(i,j).isHumanFree()){
-                    System.out.print(" I ");
+                else if(simpleBoard.isTileHumanFree(Position.createPosition(i,j))){
+                        result += " I ";
                 }
-                else if(board.getTile(i,j).isInfectedFree()){
-                    System.out.print(" H ");
+                else if(simpleBoard.isTileInfectedFree(Position.createPosition(i,j))){
+                        result += " H ";
                 }
                 else{
-                    System.out.print(" * ");
+                        result += " * ";
                 }
             }
-            System.out.print("\n");
+            result += "\n";
         }
+        result += "\n";
+        return result;
     }
 
 

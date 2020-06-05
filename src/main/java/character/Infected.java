@@ -2,15 +2,9 @@ package character;
 
 public class Infected extends Character {
 
-    //private int viewRange;//not done
-
     public Infected() {
 
-        super(40, 15);
-    }
-
-    public Infected(int healthPoints, int attackDamage){
-        super(healthPoints, attackDamage);
+        super(55, 10);
     }
 
     public void increaseAttack(){
