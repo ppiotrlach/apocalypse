@@ -27,9 +27,13 @@ public class Application{
     }
 
     public static void main(String[] args){
-        GameCreator boardCreator = new GameCreator(10,10 ,10 ,10);
+        DataCollector arg = new DataCollector(args);
+
+        GameCreator boardCreator = new GameCreator(arg.getEnteredAmountOfHuman(),arg.getEnteredAmountOfInfected(),
+                                                    arg.getEnteredMapHeight() ,arg.getEnteredMapWidth());
         Application app = new Application(boardCreator);
         app.runApplication();
+
     }
 
 }
