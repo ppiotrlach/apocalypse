@@ -6,6 +6,9 @@ public class Human extends Character {
         super(55, 18);
     }
 
+    public Human(int healthPoints, int attackDamage){
+        super(healthPoints,attackDamage);
+    }
 
     @Override
     public String toString() {
