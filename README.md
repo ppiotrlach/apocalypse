@@ -3,8 +3,10 @@
 An agent-based simulation of an apocalypse
 
 ## Usage
+Java Version is specified to JDK 14!  
+(WIN) Download it and set an environmental variable JAVA_HOME and PATH.
 
-You can run this project - with ***gradlew run***
+Now you can run this project with - ***gradlew run***
 
 or if you want to specify numbers
 
