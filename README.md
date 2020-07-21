@@ -33,7 +33,7 @@ But there is one more interesting thing we didn't point at...
 # Conclusions
 Simulation's variety comes not only from many random aspects,<br>
 but also from the fact that AttackDamage of Characters of nation - Infected<br>increases by 1 every turn.<br>
-**This means that the bigger the map is the better chance of winning Infected have.**
+**This means that the bigger the map is the better chance of winning Infected have.**  
 Displayed example was created with arguments "5 5 5 5".<br>
 This resulted in Humans victory, but it depends on many random factors.<br>
 The moment we try a bigger map such as "5 5 20 20", Infected are most likely to win.  
