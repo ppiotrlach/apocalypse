@@ -27,7 +27,7 @@ Letter H represents Human, Letter I represents Infected<br>and * represents that
 
 ![github-small](images/Demonstration1.png)
 
-In this case as we you can see Humans won with two survivors.<br>
+In this case as we can see Humans won with two survivors.<br>
 After each step the application displays the state of every living creature.<br>
 The state consists of players ID, damage, health and Position starting at (0,0)<br>
 But there is one more interesting thing we didn't point at...
